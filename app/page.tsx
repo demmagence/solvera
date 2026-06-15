@@ -6,12 +6,12 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    { url: "/squad/1.jpg", title: "OPERASI INSIDEN UTAMA", ref: "SQ-OP-01", desc: "Dokumentasi taktis seluruh agen skuad di sektor utama." },
-    { url: "/squad/2.jpg", title: "BRIEFING HARIAN REGEMENTAL", ref: "SQ-OP-02", desc: "Pengumpulan bukti lapangan dan pembagian sektor investigasi." },
-    { url: "/squad/3.jpg", title: "TACTICAL BRIEFING SEKRETARIS", ref: "SQ-OP-03", desc: "Sinkronisasi dokumen intelijen skuad." },
-    { url: "/squad/4.jpg", title: "EVALUASI ANALITIS LOGISTIK", ref: "SQ-OP-04", desc: "Peninjauan aset taktis dan keuangan operasional." },
-    { url: "/squad/5.jpg", title: "SIMULASI PENGAMANAN SEKTOR", ref: "SQ-OP-05", desc: "Latihan koordinasi pertahanan perimeter dan pengawalan." },
-    { url: "/squad/6.jpg", title: "RAPAT DEWAN KOMANDO", ref: "SQ-OP-06", desc: "Pengambilan keputusan misi kritis oleh staf wali kelas." }
+    { url: "/squad/1.jpg", title: "OPERASI INSIDEN UTAMA", ref: "SQ-OP-01", desc: "Dokumentasi taktis seluruh agen skuad di sektor utama.", aspect: "aspect-[4/3] w-full" },
+    { url: "/squad/2.jpg", title: "BRIEFING HARIAN REGEMENTAL", ref: "SQ-OP-02", desc: "Pengumpulan bukti lapangan dan pembagian sektor investigasi.", aspect: "aspect-[4/3] w-full" },
+    { url: "/squad/3.jpg", title: "TACTICAL BRIEFING SEKRETARIS", ref: "SQ-OP-03", desc: "Sinkronisasi dokumen intelijen skuad.", aspect: "aspect-[3/4] max-w-md mx-auto w-full" },
+    { url: "/squad/4.jpg", title: "EVALUASI ANALITIS LOGISTIK", ref: "SQ-OP-04", desc: "Peninjauan aset taktis dan keuangan operasional.", aspect: "aspect-[4/3] w-full" },
+    { url: "/squad/5.jpg", title: "SIMULASI PENGAMANAN SEKTOR", ref: "SQ-OP-05", desc: "Latihan koordinasi pertahanan perimeter dan pengawalan.", aspect: "aspect-[16/9] w-full" },
+    { url: "/squad/6.jpg", title: "RAPAT DEWAN KOMANDO", ref: "SQ-OP-06", desc: "Pengambilan keputusan misi kritis oleh staf wali kelas.", aspect: "aspect-[4/3] w-full" }
   ];
 
   const agents = [
@@ -702,11 +702,11 @@ export default function Home() {
           <div className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] max-w-3xl w-full relative">
             
             {/* Visual classified overlay effect */}
-            <div className="aspect-[4/3] md:aspect-[16/10] border border-secondary relative overflow-hidden bg-secondary flex items-center justify-center">
+            <div className={`border border-secondary relative overflow-hidden bg-secondary flex items-center justify-center transition-all duration-300 ${slides[currentSlide].aspect}`}>
               <img 
                 src={slides[currentSlide].url} 
                 alt={slides[currentSlide].title} 
-                className="w-full h-full object-contain transition-opacity duration-300"
+                className="w-full h-full object-cover transition-opacity duration-300"
               />
 
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.1)_50%,rgba(0,0,0,0.1))] bg-[length:100%_4px] mix-blend-overlay pointer-events-none"></div>

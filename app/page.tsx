@@ -112,7 +112,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Chain of Command Section */}
+        {/* ======================================================== */}
+        {/* SECTION 1.3: CHAIN OF COMMAND */}
+        {/* ======================================================== */}
         <div className="pt-12">
           <div className="flex items-end justify-between border-b-4 border-secondary pb-4 mb-16">
             <h2 className="headline-md">Chain of Command</h2>
@@ -120,7 +122,11 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center">
-            {/* Top Level: Chief of Ops */}
+            
+            {/* WALI KELAS SECTION */}
+            {/* ======================================================== */}
+            {/* LEVEL 1: WALI KELAS */}
+            {/* ======================================================== */}
             <div className="dossier-card w-72 p-6 text-center z-10 bg-surface">
               <div className="absolute top-[-10px] left-[-10px] bg-primary text-surface px-2 py-1 label-sm">
                 Clearance L1
@@ -128,109 +134,535 @@ export default function Home() {
               <div className="w-12 h-12 rounded-full border-4 border-secondary mx-auto mb-4 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><circle cx="12" cy="11" r="3" /></svg>
               </div>
-              <h3 className="font-space-mono font-bold text-xl mb-1">CHIEF OF OPS</h3>
-              <p className="label-md text-primary mb-4">Class Leader</p>
+              <h3 className="font-space-mono font-bold text-xl mb-1">WALI KELAS</h3>
+              <p className="label-md text-primary mb-4">Ibu Sarah Siti Sumaerah</p>
               <div className="border-t border-dashed border-secondary/30 pt-3">
                 <p className="label-sm">Status: <span className="text-primary font-bold">ACTIVE</span></p>
               </div>
             </div>
 
-            {/* Tree connecting lines */}
+            {/* Connecting Lines: Level 1 -> Level 2 */}
             <div className="w-0.5 h-8 bg-secondary"></div>
             <div className="w-[400px] h-0.5 bg-secondary"></div>
-            
-            <div className="flex justify-between w-[500px]">
+            <div className="flex justify-between w-[500px] relative">
               <div className="w-0.5 h-8 bg-secondary ml-[50px]"></div>
               <div className="w-0.5 h-20 bg-secondary absolute mt-[-2px] left-1/2 -translate-x-1/2 z-0"></div>
               <div className="w-0.5 h-8 bg-secondary mr-[50px]"></div>
             </div>
 
-            {/* Second Level */}
-            <div className="flex justify-between w-[640px] z-10 relative">
-              <div className="dossier-card w-64 p-5 bg-surface relative z-10">
+            {/* COMMANDERS SECTION */}
+            {/* ======================================================== */}
+            {/* LEVEL 2: KETUA & WAKIL KETUA MURID */}
+            {/* ======================================================== */}
+            <div className="flex flex-col md:flex-row justify-between gap-12 w-full max-w-[680px] z-10 relative">
+              
+              {/* KETUA MURID */}
+              <div className="dossier-card flex-1 p-5 bg-surface relative z-10">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="font-space-mono font-bold text-lg mb-1">INTEL DIVISION</h3>
-                    <p className="label-sm text-primary">Secretary</p>
+                    <h3 className="font-space-mono font-bold text-lg mb-1">KETUA MURID</h3>
+                    <p className="label-sm text-primary">M. ARSA PRAYATA</p>
                   </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
                 </div>
                 <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-80">Documentation and records.</p>
+                  <p className="text-sm font-hanken opacity-80">Memimpin skuad operasional kelas, koordinasi taktis tingkat tinggi, dan penanggung jawab utama misi.</p>
                 </div>
               </div>
 
-              <div className="dossier-card w-64 p-5 bg-surface relative z-10">
+              {/* WAKIL KETUA MURID */}
+              <div className="dossier-card flex-1 p-5 bg-surface relative z-10">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="font-space-mono font-bold text-lg mb-1">RESOURCE CMD</h3>
-                    <p className="label-sm text-primary">Treasurer</p>
+                    <h3 className="font-space-mono font-bold text-lg mb-1">WAKIL KETUA MURID</h3>
+                    <p className="label-sm text-primary">M. ARKAN RAIHAN NUGRAHA</p>
                   </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 3v18h18" /><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" /></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-secondary"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
                 </div>
                 <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-80">Financial logistics and assets.</p>
+                  <p className="text-sm font-hanken opacity-80">Mendukung komando utama, koordinasi logistik taktis internal, dan penjamin kontinuitas operasional skuad.</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-secondary text-surface px-4 py-1 mt-6 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
-              Field Divisions
+            {/* Connecting Lines: Level 2 -> Level 3 */}
+            <div className="w-0.5 h-12 bg-secondary"></div>
+
+            {/* SUB-SECTIONS (FIELD DIVISIONS) */}
+            {/* ======================================================== */}
+            
+            {/* DIVISION: SEKRETARIS */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Sekretaris Division
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[600px] md:w-[700px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[600px] md:w-[700px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[900px] justify-between">
+                {/* Sekretaris 01 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Sekretaris 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Syahira</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Bertanggung jawab atas pencatatan log book, administrasi surat menyurat, dan pengarsipan berkas taktis.</p>
+                  </div>
+                </div>
+
+                {/* Sekretaris 02 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Sekretaris 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Rahma</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Mengelola risalah rapat skuad, pendataan profil agen, dan distribusi instruksi komando.</p>
+                  </div>
+                </div>
+
+                {/* Sekretaris 03 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Sekretaris 03</p>
+                      <h3 className="font-space-mono font-bold text-lg">Putri</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Mendokumentasikan data presensi agen dan memelihara ketertiban catatan administratif berkala.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="w-0.5 h-8 bg-secondary"></div>
-            <div className="w-[600px] md:w-[700px] h-0.5 bg-secondary"></div>
-            
-            <div className="flex justify-between w-[600px] md:w-[700px]">
-               <div className="w-0.5 h-8 bg-secondary ml-8"></div>
-               <div className="w-0.5 h-8 bg-secondary"></div>
-               <div className="w-0.5 h-8 bg-secondary mr-8"></div>
+
+            {/* DIVISION: BENDAHARA */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Bendahara Division
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[600px] md:w-[700px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[600px] md:w-[700px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[900px] justify-between">
+                {/* Bendahara 01 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Bendahara 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">NAZWATUS SHIFA</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Mengawasi aliran dana logistik, pencatatan kas skuad, dan keamanan anggaran operasional.</p>
+                  </div>
+                </div>
+
+                {/* Bendahara 02 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Bendahara 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">RESNA RAHMAWATI</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Mengelola pelaporan keuangan mingguan, penagihan iuran taktis, dan perencanaan dana darurat.</p>
+                  </div>
+                </div>
+
+                {/* Bendahara 03 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Bendahara 03</p>
+                      <h3 className="font-space-mono font-bold text-lg">ROPI'I ALAWI</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Audit aset finansial kelas, verifikasi pengeluaran kebutuhan lapangan, dan rekonsiliasi kas operasional.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Third Level */}
-            <div className="flex flex-col md:flex-row gap-6 w-full max-w-[900px] justify-between">
-              {/* Academic */}
-              <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <p className="label-sm opacity-60 mb-1">Seksi 01</p>
-                    <h3 className="font-space-mono font-bold text-lg">ACADEMIC</h3>
-                  </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
-                </div>
-                <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-80">Responsible for study material distribution, intel gathering, and exam preparation logistics.</p>
-                </div>
+            <div className="w-0.5 h-8 bg-secondary"></div>
+
+            {/* DIVISION: SEKSI KEAGAMAAN */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Seksi Keagamaan
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[400px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[400px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
               </div>
 
-              {/* Enforcement */}
-              <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <p className="label-sm opacity-60 mb-1">Seksi 02</p>
-                    <h3 className="font-space-mono font-bold text-lg">ENFORCEMENT</h3>
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[800px] justify-center">
+                {/* Keagamaan 01 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Keagamaan 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Ibnu</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
                   </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Membina ketahanan spiritual skuad, mengoordinasi kegiatan ibadah bersama, dan pembinaan moral.</p>
+                  </div>
                 </div>
-                <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-80">Maintains strict discipline, enforces operational protocols, and secures the class perimeter.</p>
-                </div>
-              </div>
 
-              {/* Sanitation */}
-              <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <p className="label-sm opacity-60 mb-1">Seksi 03</p>
-                    <h3 className="font-space-mono font-bold text-lg">SANITATION</h3>
+                {/* Keagamaan 02 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Keagamaan 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Jihan</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
                   </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M2 14h20" /><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" /><path d="M12 14V4" /><path d="M9 7h6" /></svg>
-                </div>
-                <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-80">Executes scheduled tactical sweeps to maintain a pristine and orderly operational environment.</p>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Mengelola agenda perayaan hari besar keagamaan dan memelihara toleransi antar agen kelas.</p>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div className="w-0.5 h-8 bg-secondary"></div>
+
+            {/* DIVISION: SEKSI PENDIDIKAN */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Seksi Pendidikan
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[400px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[400px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[800px] justify-center">
+                {/* Pendidikan 01 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Pendidikan 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Andhika</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Merancang strategi akademik, distribusi bahan intelijen kurikulum, dan mentoring inteligensia.</p>
+                  </div>
+                </div>
+
+                {/* Pendidikan 02 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Pendidikan 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Rafa</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Koordinasi persiapan ujian, pemantauan performa akademik skuad, dan penyediaan referensi studi.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-0.5 h-8 bg-secondary"></div>
+
+            {/* DIVISION: SEKSI OLAHRAGA */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Seksi Olahraga
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[400px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[400px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[800px] justify-center">
+                {/* Olahraga 01 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Olahraga 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Jibril</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a4 4 0 0 0-4 4v5c0 2.2 1.8 4 4 4s4-1.8 4-4V6a4 4 0 0 0-4-4z" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Mengatur program pembinaan fisik skuad, koordinasi latihan kebugaran, dan taktik olahraga lapangan.</p>
+                  </div>
+                </div>
+
+                {/* Olahraga 02 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Olahraga 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Asyraf</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a4 4 0 0 0-4 4v5c0 2.2 1.8 4 4 4s4-1.8 4-4V6a4 4 0 0 0-4-4z" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Memonitor kesiapan stamina fisik agen dan memimpin skuad dalam kompetisi fisik eksternal.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-0.5 h-8 bg-secondary"></div>
+
+            {/* DIVISION: SEKSI KEBERSIHAN */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Seksi Kebersihan
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[400px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[400px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[800px] justify-center">
+                {/* Kebersihan 01 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Kebersihan 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Dika</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Memimpin sterilisasi sektor utama, sanitasi berkala, dan pemeliharaan kenyamanan markas.</p>
+                  </div>
+                </div>
+
+                {/* Kebersihan 02 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Kebersihan 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Keanu</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Mengelola pengelolaan limbah operasional, pemeliharaan kebersihan koridor, dan kesiapan alat kebersihan.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-0.5 h-8 bg-secondary"></div>
+
+            {/* DIVISION: SEKSI PERALATAN */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Seksi Peralatan
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[400px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[400px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[800px] justify-center">
+                {/* Peralatan 01 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Peralatan 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Deryl</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Inventarisasi aset perlengkapan kelas, pengadaan peralatan operasional, dan perawatan logistik pendukung.</p>
+                  </div>
+                </div>
+
+                {/* Peralatan 02 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Peralatan 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Fariz</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Manajemen distribusi perkakas kelas, pemeliharaan sistem kelistrikan, dan kesiapan sarana presentasi.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-0.5 h-8 bg-secondary"></div>
+
+            {/* DIVISION: SEKSI KEAMANAN */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Seksi Keamanan
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[400px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[400px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[800px] justify-center">
+                {/* Keamanan 01 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Keamanan 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Kiano</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Patroli ketertiban sektor, penjagaan pintu masuk operasional, dan mediasi konflik antar agen.</p>
+                  </div>
+                </div>
+
+                {/* Keamanan 02 */}
+                <div className="dossier-card flex-1 max-w-[380px] p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Keamanan 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Alyandra</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Pencegahan kebocoran informasi taktis, penegakan protokol disiplin kelas, dan pengawasan perimeter.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-0.5 h-8 bg-secondary"></div>
+
+            {/* DIVISION: SEKSI DOKUMENTASI */}
+            {/* ======================================================== */}
+            <div className="w-full flex flex-col items-center">
+              <div className="bg-secondary text-surface px-4 py-1 z-10 font-courier font-bold uppercase tracking-widest text-sm relative border-l-4 border-r-4 border-primary">
+                Seksi Dokumentasi
+              </div>
+              <div className="w-0.5 h-8 bg-secondary"></div>
+              <div className="w-[600px] md:w-[700px] h-0.5 bg-secondary"></div>
+              <div className="flex justify-between w-[600px] md:w-[700px] mb-4">
+                <div className="w-0.5 h-4 bg-secondary ml-8"></div>
+                <div className="w-0.5 h-4 bg-secondary ml-24"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-24"></div>
+                <div className="w-0.5 h-4 bg-secondary mr-8"></div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-6 w-full max-w-[950px] justify-between">
+                {/* Dokumentasi 01 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Dokumentasi 01</p>
+                      <h3 className="font-space-mono font-bold text-lg">Jihan</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Perekaman visual operasi kelas, dokumentasi momen bersejarah, dan kurator galeri skuad.</p>
+                  </div>
+                </div>
+
+                {/* Dokumentasi 02 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Dokumentasi 02</p>
+                      <h3 className="font-space-mono font-bold text-lg">Nesya</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Penyuntingan materi dokumentasi, desain publikasi intelijen, dan pengelolaan arsip media.</p>
+                  </div>
+                </div>
+
+                {/* Dokumentasi 03 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Dokumentasi 03</p>
+                      <h3 className="font-space-mono font-bold text-lg">Haidar</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Pengambilan gambar taktis lapangan, liputan kegiatan skuad, dan pemeliharaan alat perekam.</p>
+                  </div>
+                </div>
+
+                {/* Dokumentasi 04 */}
+                <div className="dossier-card flex-1 p-5 bg-[#e6e3e0]">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="label-sm opacity-60 mb-1">Seksi Dokumentasi 04</p>
+                      <h3 className="font-space-mono font-bold text-lg">Ilisha</h3>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
+                  </div>
+                  <div className="border-t border-secondary pt-3">
+                    <p className="text-sm font-hanken opacity-80">Manajemen pustaka dokumentasi digital, penyusunan kliping visual kelas, dan dokumentasi profil agen.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

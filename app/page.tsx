@@ -702,12 +702,13 @@ export default function Home() {
           <div className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] max-w-3xl w-full relative">
             
             {/* Visual classified overlay effect */}
-            <div className="aspect-[16/9] border border-secondary relative overflow-hidden bg-[#e0dbd5]">
+            <div className="aspect-[4/3] md:aspect-[16/10] border border-secondary relative overflow-hidden bg-secondary flex items-center justify-center">
               <img 
                 src={slides[currentSlide].url} 
                 alt={slides[currentSlide].title} 
-                className="w-full h-full object-cover transition-opacity duration-300"
+                className="w-full h-full object-contain transition-opacity duration-300"
               />
+
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.1)_50%,rgba(0,0,0,0.1))] bg-[length:100%_4px] mix-blend-overlay pointer-events-none"></div>
               
               {/* Top Secret Badge Overlay */}

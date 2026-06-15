@@ -698,7 +698,7 @@ export default function Home() {
         </div>
 
         {/* Group Photo Slideshow */}
-        <div className="flex flex-col items-center pt-8 space-y-6">
+        <div className="flex flex-col items-center pt-8">
           <div className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] max-w-3xl w-full relative">
             
             {/* Visual classified overlay effect */}
@@ -714,6 +714,23 @@ export default function Home() {
               <div className="absolute top-4 left-4 bg-primary text-surface font-space-mono font-bold text-xs px-3 py-1 border border-primary shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] z-10 tracking-widest rotate-[-3deg]">
                 DECLASSIFIED
               </div>
+
+              {/* Overlay Navigation Buttons */}
+              <button 
+                onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-surface/90 text-secondary w-10 h-10 border-2 border-secondary flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:text-surface active:bg-primary/80 transition-all cursor-pointer z-20"
+                aria-label="Previous image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              
+              <button 
+                onClick={() => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-surface/90 text-secondary w-10 h-10 border-2 border-secondary flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:text-surface active:bg-primary/80 transition-all cursor-pointer z-20"
+                aria-label="Next image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
             </div>
             
             {/* Caption & Metadata */}
@@ -728,22 +745,6 @@ export default function Home() {
                 <span className="font-courier text-xs font-bold uppercase">EVIDENCE {currentSlide + 1} OF 6</span>
               </div>
             </div>
-          </div>
-          
-          {/* Slideshow Controls */}
-          <div className="flex gap-4">
-            <button 
-              onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
-              className="bg-surface text-secondary px-6 py-2 border-2 border-secondary font-courier font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:text-surface hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_rgba(26,26,26,1)] active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all cursor-pointer"
-            >
-              [ BACK ]
-            </button>
-            <button 
-              onClick={() => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))}
-              className="bg-secondary text-surface px-6 py-2 border-2 border-secondary font-courier font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:border-primary hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_rgba(26,26,26,1)] active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all cursor-pointer"
-            >
-              [ NEXT ]
-            </button>
           </div>
         </div>
 

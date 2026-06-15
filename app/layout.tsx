@@ -46,10 +46,6 @@ export default function RootLayout({
                 src="/image.png" 
                 alt="Solvera Logo" 
                 className="w-10 h-10 object-contain rounded-full border border-secondary bg-surface"
-                onError={(e) => {
-                  // Hide image if logo.png doesn't exist yet
-                  (e.target as HTMLElement).style.display = 'none';
-                }}
               />
               <span className="uppercase tracking-tighter">Solvera Class</span>
             </Link>

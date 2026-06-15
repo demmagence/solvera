@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #8B1A1A;
+  --color-secondary: #1A1A1A;
+  --color-surface: #F9F7F2;
+  --color-neutral: #4A4A4A;
+  --color-error: #ba1a1a;
+  
+  --font-space-mono: var(--font-space-mono), monospace;
+  --font-hanken: var(--font-hanken), sans-serif;
+  --font-courier: var(--font-courier), monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  background-color: var(--color-surface);
+  color: var(--color-secondary);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Background Texture */
+.texture-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base Styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Typography Utilities */
+.label-md {
+  font-family: var(--font-courier);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.label-sm {
+  font-family: var(--font-courier);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.headline-lg {
+  font-family: var(--font-space-mono);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.headline-md {
+  font-family: var(--font-space-mono);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+/* Noir UI Components */
+.btn-primary {
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
+  font-family: var(--font-space-mono);
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 4px 4px 0px 0px var(--color-secondary);
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 2px 2px 0px 0px var(--color-primary);
+  transform: translate(2px, 2px);
+}
+
+.dossier-card {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-secondary);
+  border-top-width: 6px;
+  box-shadow: 6px 6px 0px 0px rgba(26, 26, 26, 0.15);
+  position: relative;
+  border-radius: 0;
+}
+
+.dossier-tab {
+  position: absolute;
+  top: -14px;
+  left: -2px;
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
+  padding: 2px 8px;
+  font-family: var(--font-courier);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.redacted {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary);
+  display: inline-block;
+}
+
+.stamp {
+  font-family: var(--font-courier);
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 4px 8px;
+  display: inline-block;
+  transform: rotate(-5deg);
+  border-radius: 2px;
 }

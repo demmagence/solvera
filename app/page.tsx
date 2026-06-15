@@ -1,9 +1,151 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    let startX = 0;
+    let startY = 0;
+    let dx = 0;
+    let dy = 0;
+    let isDragging = false;
+    let isTransitioning = false;
+
+    const handleStart = (clientX: number, clientY: number) => {
+      if (isTransitioning) return;
+      isDragging = true;
+      startX = clientX;
+      startY = clientY;
+      dx = 0;
+      dy = 0;
+      card.style.transition = "none";
+    };
+
+    const handleMove = (clientX: number, clientY: number, e: Event) => {
+      if (!isDragging) return;
+      dx = clientX - startX;
+      dy = clientY - startY;
+      const rotate = dx * 0.05;
+      
+      if (Math.abs(dx) > 10 && e.cancelable) {
+        e.preventDefault();
+      }
+
+      card.style.transform = `translate3d(${dx}px, ${dy}px, 0) rotate(${rotate}deg)`;
+    };
+
+    const handleEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      const threshold = 120;
+      if (Math.abs(dx) > threshold) {
+        isTransitioning = true;
+        const direction = dx > 0 ? 1 : -1;
+        const targetX = direction * (window.innerWidth + 200);
+        const targetY = dy + (dy > 0 ? 100 : -100);
+        const targetRotate = direction * 35;
+
+        card.style.transition = "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease-out";
+        card.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) rotate(${targetRotate}deg)`;
+        card.style.opacity = "0";
+
+        setTimeout(() => {
+          setCurrentSlide((prev) => {
+            const len = 6;
+            if (direction > 0) {
+              return prev === 0 ? len - 1 : prev - 1;
+            } else {
+              return prev === len - 1 ? 0 : prev + 1;
+            }
+          });
+
+          card.style.transition = "none";
+          card.style.transform = "translate3d(0, 20px, 0) scale(0.95) rotate(0deg)";
+          card.style.opacity = "0";
+
+          // Force reflow
+          card.offsetHeight;
+
+          card.style.transition = "transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.35s ease-out";
+          card.style.transform = "translate3d(0, 0, 0) scale(1) rotate(-0.5deg)";
+          card.style.opacity = "1";
+
+          setTimeout(() => {
+            card.style.transform = "";
+            card.style.transition = "";
+            card.style.opacity = "";
+            isTransitioning = false;
+          }, 400);
+
+        }, 400);
+      } else {
+        card.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25)";
+        card.style.transform = "translate3d(0, 0, 0) rotate(-0.5deg)";
+        
+        setTimeout(() => {
+          if (!isDragging && !isTransitioning) {
+            card.style.transform = "";
+            card.style.transition = "";
+          }
+        }, 300);
+      }
+    };
+
+    const onMouseDown = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("button") || target.closest("a") || e.button !== 0) return;
+      handleStart(e.clientX, e.clientY);
+      window.addEventListener("mousemove", onMouseMove);
+      window.addEventListener("mouseup", onMouseUp);
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      handleMove(e.clientX, e.clientY, e);
+    };
+
+    const onMouseUp = () => {
+      handleEnd();
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("button") || target.closest("a")) return;
+      handleStart(e.touches[0].clientX, e.touches[0].clientY);
+      window.addEventListener("touchmove", onTouchMove, { passive: false });
+      window.addEventListener("touchend", onTouchEnd);
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      handleMove(e.touches[0].clientX, e.touches[0].clientY, e);
+    };
+
+    const onTouchEnd = () => {
+      handleEnd();
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+
+    card.addEventListener("mousedown", onMouseDown);
+    card.addEventListener("touchstart", onTouchStart, { passive: true });
+
+    return () => {
+      card.removeEventListener("mousedown", onMouseDown);
+      card.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
 
   const slides = [
     { url: "/squad/1.jpg", title: "OPERASI INSIDEN UTAMA", ref: "SQ-OP-01", desc: "Dokumentasi taktis seluruh agen skuad di sektor utama.", aspect: "aspect-[4/3] w-full" },
@@ -699,14 +841,18 @@ export default function Home() {
 
         {/* Group Photo Slideshow */}
         <div className="flex flex-col items-center pt-8">
-          <div className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] max-w-3xl w-full relative">
+          <div 
+            ref={cardRef}
+            className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] max-w-3xl w-full relative select-none cursor-grab active:cursor-grabbing will-change-transform"
+          >
             
             {/* Visual classified overlay effect */}
             <div className={`border border-secondary relative overflow-hidden bg-secondary flex items-center justify-center transition-all duration-300 ${slides[currentSlide].aspect}`}>
               <img 
                 src={slides[currentSlide].url} 
                 alt={slides[currentSlide].title} 
-                className="w-full h-full object-cover transition-opacity duration-300"
+                className="w-full h-full object-cover transition-opacity duration-300 pointer-events-none"
+                draggable="false"
               />
 
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.1)_50%,rgba(0,0,0,0.1))] bg-[length:100%_4px] mix-blend-overlay pointer-events-none"></div>
@@ -715,23 +861,6 @@ export default function Home() {
               <div className="absolute top-4 left-4 bg-primary text-surface font-space-mono font-bold text-xs px-3 py-1 border border-primary shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] z-10 tracking-widest rotate-[-3deg]">
                 DECLASSIFIED
               </div>
-
-              {/* Overlay Navigation Buttons */}
-              <button 
-                onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-surface/90 text-secondary w-10 h-10 border-2 border-secondary flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:text-surface active:bg-primary/80 transition-all cursor-pointer z-20"
-                aria-label="Previous image"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              </button>
-              
-              <button 
-                onClick={() => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-surface/90 text-secondary w-10 h-10 border-2 border-secondary flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:text-surface active:bg-primary/80 transition-all cursor-pointer z-20"
-                aria-label="Next image"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              </button>
             </div>
             
             {/* Caption & Metadata */}
@@ -740,6 +869,12 @@ export default function Home() {
                 <h2 className="font-space-mono text-2xl font-bold tracking-tighter uppercase">{slides[currentSlide].title}</h2>
                 <p className="font-courier text-xs opacity-60 mt-1 uppercase">REF NO: {slides[currentSlide].ref}</p>
                 <p className="font-hanken text-sm opacity-90 mt-2 max-w-xl">{slides[currentSlide].desc}</p>
+                
+                {/* Swipe Gesture Visual Instruction Hint */}
+                <p className="font-space-mono text-[10px] text-primary/75 mt-3.5 tracking-wider uppercase font-bold flex items-center gap-1.5 pointer-events-none">
+                  <svg className="w-3.5 h-3.5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                  [ DRAG / SWIPE DOSIR KARTU UNTUK NAVIGASI ]
+                </p>
               </div>
               <div className="border border-secondary px-3 py-1.5 flex items-center gap-2 bg-surface-container-low shrink-0 self-end md:self-auto">
                 <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></div>

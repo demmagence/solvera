@@ -148,12 +148,12 @@ export default function Home() {
   }, []);
 
   const slides = [
-    { url: "/squad/1.jpg", title: "OPERASI INSIDEN UTAMA", ref: "SQ-OP-01", desc: "Dokumentasi taktis seluruh agen skuad di sektor utama.", aspect: "aspect-[4/3] w-full" },
-    { url: "/squad/2.jpg", title: "BRIEFING HARIAN REGEMENTAL", ref: "SQ-OP-02", desc: "Pengumpulan bukti lapangan dan pembagian sektor investigasi.", aspect: "aspect-[4/3] w-full" },
-    { url: "/squad/3.jpg", title: "TACTICAL BRIEFING SEKRETARIS", ref: "SQ-OP-03", desc: "Sinkronisasi dokumen intelijen skuad.", aspect: "aspect-[3/4] max-w-md mx-auto w-full" },
-    { url: "/squad/4.jpg", title: "EVALUASI ANALITIS LOGISTIK", ref: "SQ-OP-04", desc: "Peninjauan aset taktis dan keuangan operasional.", aspect: "aspect-[4/3] w-full" },
-    { url: "/squad/5.jpg", title: "SIMULASI PENGAMANAN SEKTOR", ref: "SQ-OP-05", desc: "Latihan koordinasi pertahanan perimeter dan pengawalan.", aspect: "aspect-[16/9] w-full" },
-    { url: "/squad/6.jpg", title: "RAPAT DEWAN KOMANDO", ref: "SQ-OP-06", desc: "Pengambilan keputusan misi kritis oleh staf wali kelas.", aspect: "aspect-[4/3] w-full" }
+    { url: "/squad/1.jpg", title: "OPERASI INSIDEN UTAMA", ref: "SQ-OP-01", desc: "Dokumentasi taktis seluruh agen skuad di sektor utama.", aspect: "aspect-[4/3] w-full", widthClass: "max-w-3xl" },
+    { url: "/squad/2.jpg", title: "BRIEFING HARIAN REGEMENTAL", ref: "SQ-OP-02", desc: "Pengumpulan bukti lapangan dan pembagian sektor investigasi.", aspect: "aspect-[4/3] w-full", widthClass: "max-w-3xl" },
+    { url: "/squad/3.jpg", title: "TACTICAL BRIEFING SEKRETARIS", ref: "SQ-OP-03", desc: "Sinkronisasi dokumen intelijen skuad.", aspect: "aspect-[3/4] w-full", widthClass: "max-w-md" },
+    { url: "/squad/4.jpg", title: "EVALUASI ANALITIS LOGISTIK", ref: "SQ-OP-04", desc: "Peninjauan aset taktis dan keuangan operasional.", aspect: "aspect-[4/3] w-full", widthClass: "max-w-3xl" },
+    { url: "/squad/5.jpg", title: "SIMULASI PENGAMANAN SEKTOR", ref: "SQ-OP-05", desc: "Latihan koordinasi pertahanan perimeter dan pengawalan.", aspect: "aspect-[16/9] w-full", widthClass: "max-w-3xl" },
+    { url: "/squad/6.jpg", title: "RAPAT DEWAN KOMANDO", ref: "SQ-OP-06", desc: "Pengambilan keputusan misi kritis oleh staf wali kelas.", aspect: "aspect-[4/3] w-full", widthClass: "max-w-3xl" }
   ];
 
   const agents = [
@@ -843,7 +843,7 @@ export default function Home() {
         <div className="flex flex-col items-center pt-8">
           <div 
             ref={cardRef}
-            className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] max-w-3xl w-full relative select-none cursor-grab active:cursor-grabbing will-change-transform"
+            className={`bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] w-full relative select-none cursor-grab active:cursor-grabbing will-change-transform transition-[max-width] duration-300 ease-in-out ${slides[currentSlide].widthClass}`}
           >
             
             {/* Visual classified overlay effect */}

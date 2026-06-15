@@ -68,11 +68,6 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center font-courier text-xs uppercase gap-4">
             <p className="font-bold opacity-80 text-center md:text-left">© SOLVERA CLASS - TOP SECRET DOCUMENT</p>
             <p className="font-space-mono text-primary font-bold text-lg tracking-widest hidden md:block">SOLVERA</p>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6 opacity-80">
-              <a href="#" className="hover:text-primary">Privacy Policy</a>
-              <a href="#" className="hover:text-primary">Contact HQ</a>
-              <a href="#" className="hover:text-primary">Terms of Engagement</a>
-            </div>
           </div>
         </footer>
       </body>

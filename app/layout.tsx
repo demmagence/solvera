@@ -43,7 +43,7 @@ export default function RootLayout({
               {/* Logo Kelas */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
-                src="/logo.png" 
+                src="/image.png" 
                 alt="Solvera Logo" 
                 className="w-10 h-10 object-contain rounded-full border border-secondary bg-surface"
                 onError={(e) => {

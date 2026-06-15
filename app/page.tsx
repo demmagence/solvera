@@ -1,4 +1,19 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    { url: "/squad/1.jpg", title: "OPERASI INSIDEN UTAMA", ref: "SQ-OP-01", desc: "Dokumentasi taktis seluruh agen skuad di sektor utama." },
+    { url: "/squad/2.jpg", title: "BRIEFING HARIAN REGEMENTAL", ref: "SQ-OP-02", desc: "Pengumpulan bukti lapangan dan pembagian sektor investigasi." },
+    { url: "/squad/3.jpg", title: "TACTICAL BRIEFING SEKRETARIS", ref: "SQ-OP-03", desc: "Sinkronisasi dokumen intelijen skuad." },
+    { url: "/squad/4.jpg", title: "EVALUASI ANALITIS LOGISTIK", ref: "SQ-OP-04", desc: "Peninjauan aset taktis dan keuangan operasional." },
+    { url: "/squad/5.jpg", title: "SIMULASI PENGAMANAN SEKTOR", ref: "SQ-OP-05", desc: "Latihan koordinasi pertahanan perimeter dan pengawalan." },
+    { url: "/squad/6.jpg", title: "RAPAT DEWAN KOMANDO", ref: "SQ-OP-06", desc: "Pengambilan keputusan misi kritis oleh staf wali kelas." }
+  ];
+
   const agents = [
     { name: "J. DOE", alias: "SPECTER", skill1: "Forensics Expert", skill2: "Cryptography" },
     { name: "S. SMITH", alias: "WHISPER", skill1: "Interrogation", skill2: "Undercover Ops" },
@@ -682,25 +697,53 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Group Photo */}
-        <div className="flex justify-center pt-8">
-          <div className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-1deg] max-w-3xl w-full">
-            <div className="aspect-[16/9] bg-[#d9d9d9] border border-secondary flex flex-col items-center justify-center text-secondary opacity-50 relative overflow-hidden">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="mb-4"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <p className="font-space-mono text-xl font-bold uppercase tracking-widest">Image Redacted</p>
-              <p className="font-courier text-sm">Class Group Photo Placeholder</p>
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.1)_50%,rgba(0,0,0,0.1))] bg-[length:100%_4px] mix-blend-overlay"></div>
+        {/* Group Photo Slideshow */}
+        <div className="flex flex-col items-center pt-8 space-y-6">
+          <div className="bg-surface p-4 border-2 border-secondary shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] rotate-[-0.5deg] max-w-3xl w-full relative">
+            
+            {/* Visual classified overlay effect */}
+            <div className="aspect-[16/9] border border-secondary relative overflow-hidden bg-[#e0dbd5]">
+              <img 
+                src={slides[currentSlide].url} 
+                alt={slides[currentSlide].title} 
+                className="w-full h-full object-cover transition-opacity duration-300"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.1)_50%,rgba(0,0,0,0.1))] bg-[length:100%_4px] mix-blend-overlay pointer-events-none"></div>
+              
+              {/* Top Secret Badge Overlay */}
+              <div className="absolute top-4 left-4 bg-primary text-surface font-space-mono font-bold text-xs px-3 py-1 border border-primary shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] z-10 tracking-widest rotate-[-3deg]">
+                DECLASSIFIED
+              </div>
             </div>
-            <div className="mt-4 flex justify-between items-end">
+            
+            {/* Caption & Metadata */}
+            <div className="mt-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-t border-dashed border-secondary/35 pt-4">
               <div>
-                <h2 className="font-space-mono text-2xl font-bold tracking-tighter">THE ENTIRE SQUAD</h2>
-                <p className="font-courier text-xs opacity-60">REF NO: SQ-2024-X</p>
+                <h2 className="font-space-mono text-2xl font-bold tracking-tighter uppercase">{slides[currentSlide].title}</h2>
+                <p className="font-courier text-xs opacity-60 mt-1 uppercase">REF NO: {slides[currentSlide].ref}</p>
+                <p className="font-hanken text-sm opacity-90 mt-2 max-w-xl">{slides[currentSlide].desc}</p>
               </div>
-              <div className="border border-secondary px-2 py-1 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
-                <span className="font-courier text-xs font-bold">EVIDENCE 1</span>
+              <div className="border border-secondary px-3 py-1.5 flex items-center gap-2 bg-surface-container-low shrink-0 self-end md:self-auto">
+                <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></div>
+                <span className="font-courier text-xs font-bold uppercase">EVIDENCE {currentSlide + 1} OF 6</span>
               </div>
             </div>
+          </div>
+          
+          {/* Slideshow Controls */}
+          <div className="flex gap-4">
+            <button 
+              onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
+              className="bg-surface text-secondary px-6 py-2 border-2 border-secondary font-courier font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:text-surface hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_rgba(26,26,26,1)] active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all cursor-pointer"
+            >
+              [ BACK ]
+            </button>
+            <button 
+              onClick={() => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))}
+              className="bg-secondary text-surface px-6 py-2 border-2 border-secondary font-courier font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:bg-primary hover:border-primary hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_rgba(26,26,26,1)] active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all cursor-pointer"
+            >
+              [ NEXT ]
+            </button>
           </div>
         </div>
 

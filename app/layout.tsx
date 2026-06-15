@@ -33,20 +33,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceMono.variable} ${hankenGrotesk.variable} ${courierPrime.variable} h-full antialiased`}
+      className={`${spaceMono.variable} ${hankenGrotesk.variable} ${courierPrime.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col font-hanken bg-surface text-secondary texture-bg">
         {/* Navigation Bar */}
         <header className="border-b-4 border-secondary bg-surface sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <Link href="/" className="font-space-mono font-bold text-2xl text-primary flex items-center gap-2">
+            <Link href="/#profile" className="font-space-mono font-bold text-2xl text-primary flex items-center gap-2">
               <span className="uppercase tracking-tighter">Solvera Class</span>
             </Link>
             
             <nav className="hidden md:flex gap-8 font-courier font-bold text-sm uppercase tracking-wide">
-              <Link href="/" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Class Profile</Link>
-              <Link href="/gallery" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Squad Gallery</Link>
-              <Link href="/operations" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Operations Board</Link>
+              <Link href="/#profile" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Class Profile</Link>
+              <Link href="/#gallery" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Squad Gallery</Link>
+              <Link href="/#operations" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Operations Board</Link>
             </nav>
 
             <div className="flex items-center gap-4">

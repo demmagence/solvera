@@ -1,4 +1,4 @@
-todolist
+to do list
 mempelajari struktur project ini
 menganalisis desain yang digunakan
 mengoptimalisasi web ini agar mudah dirender

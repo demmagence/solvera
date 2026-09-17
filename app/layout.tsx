@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Mono, Hanken_Grotesk, Courier_Prime } from "next/font/google";
-import Link from "next/link";
+import Navbar from "./components/Navbar";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -21,8 +21,11 @@ const courierPrime = Courier_Prime({
 });
 
 export const metadata: Metadata = {
-  title: "Solvera Class",
-  description: "Top Secret Document for Class XI PPLG RPL 2",
+  title: "Solvera Class // XI & XII PPLG RPL 2",
+  description: "Classified Operational Dossier for Solvera Class (XI & XII PPLG RPL 2)",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -32,42 +35,35 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${spaceMono.variable} ${hankenGrotesk.variable} ${courierPrime.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col font-hanken bg-surface text-secondary texture-bg">
+      <body className="min-h-full flex flex-col font-hanken bg-surface text-secondary texture-bg selection:bg-primary selection:text-surface">
         {/* Navigation Bar */}
-        <header className="border-b-4 border-secondary bg-surface sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <Link href="/#profile" className="font-space-mono font-bold text-2xl text-primary flex items-center gap-3">
-              {/* Logo Kelas */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src="/image.png" 
-                alt="Solvera Logo" 
-                className="w-10 h-10 object-contain rounded-full border border-secondary bg-surface"
-              />
-              <span className="uppercase tracking-tighter">Solvera Class</span>
-            </Link>
-            
-            <nav className="flex gap-8 font-courier font-bold text-sm uppercase tracking-wide">
-              <Link href="/#profile" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Class Profile</Link>
-              <Link href="/#gallery" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Squad Gallery</Link>
-              <Link href="/#operations" className="hover:text-primary hover:underline decoration-2 underline-offset-4 decoration-primary transition-all">Operations Board</Link>
-            </nav>
-          </div>
-        </header>
+        <Navbar />
 
         {/* Main Content */}
-        <main className="flex-1 w-full max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-14">
           {children}
         </main>
 
         {/* Footer */}
         <footer className="bg-secondary text-surface py-8 border-t-8 border-primary">
-          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center font-courier text-xs uppercase gap-4">
-            <p className="font-bold opacity-80 text-center md:text-left">© SOLVERA CLASS - TOP SECRET DOCUMENT</p>
-            <p className="font-space-mono text-primary font-bold text-lg tracking-widest hidden md:block">SOLVERA</p>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center font-courier text-xs uppercase gap-4">
+            <div className="text-center md:text-left space-y-1">
+              <p className="font-bold tracking-wider">© SOLVERA CLASS - TOP SECRET DOCUMENT</p>
+              <p className="opacity-60 text-[10px]">
+                XI & XII PPLG RPL 2 // REPOSITORY FOR INTERNAL SECURITY PROTOCOL 88
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="label-sm border border-surface/40 px-2 py-0.5 text-[10px]">
+                CLEARANCE: CONFIDENTIAL
+              </span>
+              <p className="font-space-mono text-primary font-bold text-lg tracking-widest hidden md:block">
+                SOLVERA
+              </p>
+            </div>
           </div>
         </footer>
       </body>

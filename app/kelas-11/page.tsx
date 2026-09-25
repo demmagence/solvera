@@ -43,7 +43,7 @@ export default function Kelas11Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="p-4 border-2 border-secondary bg-[#e6e3e0]">
             <span className="font-courier text-[10px] text-primary font-bold block">LEVEL 1 // WALI KELAS</span>
-            <strong className="font-space-mono text-base block mt-1">Ibu Sarah Siti Sumaerah</strong>
+            <strong className="font-space-mono text-base block mt-1">Sarah Siti Sumaerah, S.T.</strong>
             <p className="font-hanken text-xs opacity-75 mt-1">Pembina & Penasihat Taktis</p>
           </div>
 

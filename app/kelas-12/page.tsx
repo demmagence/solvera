@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Kelas12Page() {
   const k12Leaders = [
-    { title: "WALI KELAS", name: "Ibu Sarah Siti Sumaerah", clearance: "L1", desc: "Penasihat Komando Utama" },
+    { title: "WALI KELAS", name: "A. Luddie Tri S., S.T.", clearance: "L1", desc: "Penasihat Komando Utama & Wali Kelas XII" },
     { title: "KETUA MURID (KM)", name: "Panca Satia Nugraha", clearance: "L2", desc: "Komandan Operasional Kelas XII" },
     { title: "WAKIL KETUA MURID", name: "Dika Prayoga Gunawan", clearance: "L2", desc: "Wakil Komando & Logistik Taktis" },
     { title: "SEKRETARIS", name: "Syahira Bilqis Humaira", clearance: "L2", desc: "Kepala Arsip & Administrasi" },

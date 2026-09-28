@@ -57,84 +57,136 @@ export const PIKET_ROSTER: PiketDay[] = [
 ];
 
 export interface LessonPeriod {
-  period: number;
+  period: string; // e.g. "SAIH", "1", "2", "Istirahat 1", etc.
   time: string;
   code: string;
   subject: string;
   instructor: string;
   room: string;
-  type: "KEJURUAN" | "UMUM" | "ISTIRAHAT";
+  type: "KEJURUAN" | "UMUM" | "ISTIRAHAT" | "PEMBIASAAN";
 }
 
 export interface DayTimetable {
   day: string;
   dayIndo: string;
   code: string;
+  morningActivity: string;
   periods: LessonPeriod[];
 }
+
+export const TIMETABLE_METADATA = {
+  institution: "SMKN 1 CIANJUR",
+  academicYear: "Semester Ganjil TP 2026/2027 (Periode 1)",
+  targetClass: "XII PPLG-RPL 2",
+  quote: "Barangsiapa tidak mau merasakan lelahnya mencari ilmu, ia akan merasakan hinanya kebodohan di sepanjang hidupnya",
+  quoteAuthor: "Imam Syafi'i",
+  source: "aSc Timetables",
+};
 
 export const SCHOOL_TIMETABLE: DayTimetable[] = [
   {
     day: "MONDAY",
     dayIndo: "SENIN",
     code: "SCH-MON-01",
+    morningActivity: "Upacara Bendera",
     periods: [
-      { period: 1, time: "07:00 - 07:45", code: "UPC-01", subject: "Upacara Bendera / Briefing Pagi", instructor: "Staf Pendidik", room: "Field / Yard", type: "UMUM" },
-      { period: 2, time: "07:45 - 09:15", code: "PPLG-01", subject: "Pemodelan Perangkat Lunak (PPL)", instructor: "Guru Pengampu", room: "Lab Software 2", type: "KEJURUAN" },
-      { period: 3, time: "09:15 - 09:30", code: "REC-01", subject: "Tactical Recess / Istirahat", instructor: "-", room: "Mess Hall", type: "ISTIRAHAT" },
-      { period: 4, time: "09:30 - 11:45", code: "PBO-01", subject: "Pemrograman Berorientasi Objek (PBO)", instructor: "Guru Kejuruan", room: "Lab Software 2", type: "KEJURUAN" },
-      { period: 5, time: "11:45 - 12:30", code: "REC-02", subject: "Ishoma / Spiritual Routine", instructor: "-", room: "Mosque", type: "ISTIRAHAT" },
-      { period: 6, time: "12:30 - 14:45", code: "WEB-01", subject: "Pemrograman Web & Perangkat Bergerak", instructor: "Guru Kejuruan", room: "Lab Software 2", type: "KEJURUAN" },
+      { period: "SAIH", time: "06:30 - 07:10", code: "UPC-01", subject: "Upacara Bendera", instructor: "Pembina Upacara", room: "Lapangan Upacara", type: "PEMBIASAAN" },
+      { period: "1", time: "07:10 - 07:50", code: "MTK-01", subject: "Matematika", instructor: "Ani Ismayani, M.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "2", time: "07:50 - 08:30", code: "MTK-01", subject: "Matematika", instructor: "Ani Ismayani, M.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "3", time: "08:30 - 09:10", code: "MTK-01", subject: "Matematika", instructor: "Ani Ismayani, M.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "REC 1", time: "09:10 - 09:25", code: "IST-01", subject: "Istirahat ke-1", instructor: "-", room: "Area Sekolah", type: "ISTIRAHAT" },
+      { period: "4", time: "09:25 - 10:05", code: "MTK-01", subject: "Matematika", instructor: "Ani Ismayani, M.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "5", time: "10:05 - 10:45", code: "MTK-01", subject: "Matematika", instructor: "Ani Ismayani, M.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "6", time: "10:45 - 11:25", code: "RPL-01", subject: "Konsentrasi RPL", instructor: "Tim Kejuruan RPL", room: "Lab Software", type: "KEJURUAN" },
+      { period: "REC 2", time: "11:25 - 12:30", code: "IST-02", subject: "Istirahat ke-2 (Ishoma)", instructor: "-", room: "Masjid & Area Istirahat", type: "ISTIRAHAT" },
+      { period: "7", time: "12:30 - 13:10", code: "RPL-02", subject: "Konsentrasi RPL", instructor: "Yaqub Hadi Permana, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "8", time: "13:10 - 13:50", code: "RPL-02", subject: "Konsentrasi RPL", instructor: "Yaqub Hadi Permana, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "9", time: "13:50 - 14:30", code: "RPL-02", subject: "Konsentrasi RPL", instructor: "Yaqub Hadi Permana, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "10", time: "14:30 - 15:10", code: "RPL-02", subject: "Konsentrasi RPL", instructor: "Yaqub Hadi Permana, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "11", time: "15:10 - 15:50", code: "RPL-02", subject: "Konsentrasi RPL", instructor: "Yaqub Hadi Permana, S.T.", room: "Lab Software", type: "KEJURUAN" },
     ],
   },
   {
     day: "TUESDAY",
     dayIndo: "SELASA",
     code: "SCH-TUE-02",
+    morningActivity: "Selasa Segar (Senam)",
     periods: [
-      { period: 1, time: "07:00 - 08:30", code: "MTK-01", subject: "Matematika Terapan & Logika", instructor: "Guru Mapel", room: "Ruang XI PPLG 2", type: "UMUM" },
-      { period: 2, time: "08:30 - 10:00", code: "ING-01", subject: "Bahasa Inggris Komunikasi Teknis", instructor: "Guru Mapel", room: "Ruang XI PPLG 2", type: "UMUM" },
-      { period: 3, time: "10:00 - 10:15", code: "REC-01", subject: "Tactical Recess / Istirahat", instructor: "-", room: "Mess Hall", type: "ISTIRAHAT" },
-      { period: 4, time: "10:15 - 12:00", code: "DB-01", subject: "Basis Data & SQL Architecture", instructor: "Guru Kejuruan", room: "Lab Software 1", type: "KEJURUAN" },
-      { period: 5, time: "12:00 - 12:45", code: "REC-02", subject: "Ishoma / Spiritual Routine", instructor: "-", room: "Mosque", type: "ISTIRAHAT" },
-      { period: 6, time: "12:45 - 15:00", code: "PRJ-01", subject: "Projek Kreatif & Kewirausahaan (PKK)", instructor: "Guru PKK", room: "Ruang Kreatif", type: "KEJURUAN" },
+      { period: "SAIH", time: "06:30 - 07:10", code: "SNM-01", subject: "Selasa Segar (Senam Pagi)", instructor: "Instruktur Olahraga", room: "Lapangan Olahraga", type: "PEMBIASAAN" },
+      { period: "1", time: "07:10 - 07:50", code: "RPL-03", subject: "Konsentrasi RPL", instructor: "Fajar M. Sukmawijaya, M.Kom.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "2", time: "07:50 - 08:30", code: "RPL-03", subject: "Konsentrasi RPL", instructor: "Fajar M. Sukmawijaya, M.Kom.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "3", time: "08:30 - 09:10", code: "RPL-03", subject: "Konsentrasi RPL", instructor: "Fajar M. Sukmawijaya, M.Kom.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "REC 1", time: "09:10 - 09:25", code: "IST-01", subject: "Istirahat ke-1", instructor: "-", room: "Area Sekolah", type: "ISTIRAHAT" },
+      { period: "4", time: "09:25 - 10:05", code: "RPL-04", subject: "Konsentrasi RPL", instructor: "Tim Kejuruan RPL", room: "Lab Software", type: "KEJURUAN" },
+      { period: "5", time: "10:05 - 10:45", code: "LIT-01", subject: "L (Literasi / Pengayaan)", instructor: "Tim Pembiasaan Literasi", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "6", time: "10:45 - 11:25", code: "RPL-04", subject: "Konsentrasi RPL", instructor: "Tim Kejuruan RPL", room: "Lab Software", type: "KEJURUAN" },
+      { period: "REC 2", time: "11:25 - 12:30", code: "IST-02", subject: "Istirahat ke-2 (Ishoma)", instructor: "-", room: "Masjid & Area Istirahat", type: "ISTIRAHAT" },
+      { period: "7", time: "12:30 - 13:10", code: "RPL-05", subject: "Konsentrasi RPL", instructor: "Sarah Siti Sumaerah, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "8", time: "13:10 - 13:50", code: "RPL-05", subject: "Konsentrasi RPL", instructor: "Sarah Siti Sumaerah, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "9", time: "13:50 - 14:30", code: "RPL-05", subject: "Konsentrasi RPL", instructor: "Sarah Siti Sumaerah, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "10", time: "14:30 - 15:10", code: "RPL-05", subject: "Konsentrasi RPL", instructor: "Sarah Siti Sumaerah, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "11", time: "15:10 - 15:50", code: "RPL-05", subject: "Konsentrasi RPL", instructor: "Sarah Siti Sumaerah, S.T.", room: "Lab Software", type: "KEJURUAN" },
     ],
   },
   {
     day: "WEDNESDAY",
     dayIndo: "RABU",
     code: "SCH-WED-03",
+    morningActivity: "Cahaya Rabu (Literasi)",
     periods: [
-      { period: 1, time: "07:00 - 09:15", code: "WEB-02", subject: "Fullstack Web & API Development", instructor: "Guru Kejuruan", room: "Lab Software 2", type: "KEJURUAN" },
-      { period: 2, time: "09:15 - 09:30", code: "REC-01", subject: "Tactical Recess / Istirahat", instructor: "-", room: "Mess Hall", type: "ISTIRAHAT" },
-      { period: 3, time: "09:30 - 11:45", code: "MOB-01", subject: "Pengembangan Aplikasi Mobile", instructor: "Guru Kejuruan", room: "Lab Software 2", type: "KEJURUAN" },
-      { period: 4, time: "11:45 - 12:30", code: "REC-02", subject: "Ishoma / Spiritual Routine", instructor: "-", room: "Mosque", type: "ISTIRAHAT" },
-      { period: 5, time: "12:30 - 14:45", code: "IND-01", subject: "Bahasa Indonesia & Penulisan Laporan", instructor: "Guru Mapel", room: "Ruang XI PPLG 2", type: "UMUM" },
+      { period: "SAIH", time: "06:30 - 07:10", code: "LIT-02", subject: "Cahaya Rabu (Literasi)", instructor: "Tim Literasi Sekolah", room: "Ruang XII RPL 2", type: "PEMBIASAAN" },
+      { period: "1", time: "07:10 - 07:50", code: "ING-01", subject: "Bahasa Inggris", instructor: "Tini Murtiningsih, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "2", time: "07:50 - 08:30", code: "ING-01", subject: "Bahasa Inggris", instructor: "Tini Murtiningsih, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "3", time: "08:30 - 09:10", code: "ING-01", subject: "Bahasa Inggris", instructor: "Tini Murtiningsih, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "REC 1", time: "09:10 - 09:25", code: "IST-01", subject: "Istirahat ke-1", instructor: "-", room: "Area Sekolah", type: "ISTIRAHAT" },
+      { period: "4", time: "09:25 - 10:05", code: "IND-01", subject: "Bahasa Indonesia", instructor: "Eva Yuliani, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "5", time: "10:05 - 10:45", code: "IND-01", subject: "Bahasa Indonesia", instructor: "Eva Yuliani, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "6", time: "10:45 - 11:25", code: "RPL-06", subject: "Konsentrasi RPL", instructor: "Yayat Ruhiyat, S.ST", room: "Lab Software", type: "KEJURUAN" },
+      { period: "REC 2", time: "11:25 - 12:30", code: "IST-02", subject: "Istirahat ke-2 (Ishoma)", instructor: "-", room: "Masjid & Area Istirahat", type: "ISTIRAHAT" },
+      { period: "7", time: "12:30 - 13:10", code: "RPL-06", subject: "Konsentrasi RPL", instructor: "Yayat Ruhiyat, S.ST", room: "Lab Software", type: "KEJURUAN" },
+      { period: "8", time: "13:10 - 13:50", code: "BK-01", subject: "BK (Bimbingan Konseling)", instructor: "Guru BK", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "9", time: "13:50 - 14:30", code: "KIK-01", subject: "KIK (Kreativitas & Inovasi Kejuruan)", instructor: "Renita Anjarsari, S.Pd., M.M.", room: "Lab Software / Bengkel", type: "KEJURUAN" },
+      { period: "10", time: "14:30 - 15:10", code: "KIK-01", subject: "KIK (Kreativitas & Inovasi Kejuruan)", instructor: "Renita Anjarsari, S.Pd., M.M.", room: "Lab Software / Bengkel", type: "KEJURUAN" },
+      { period: "11", time: "15:10 - 15:50", code: "KIK-01", subject: "KIK (Kreativitas & Inovasi Kejuruan)", instructor: "Renita Anjarsari, S.Pd., M.M.", room: "Lab Software / Bengkel", type: "KEJURUAN" },
     ],
   },
   {
     day: "THURSDAY",
     dayIndo: "KAMIS",
     code: "SCH-THU-04",
+    morningActivity: "Kamis Alami (Ekologi)",
     periods: [
-      { period: 1, time: "07:00 - 08:30", code: "PAI-01", subject: "Pendidikan Agama & Budi Pekerti", instructor: "Guru Agama", room: "Ruang XI PPLG 2", type: "UMUM" },
-      { period: 2, time: "08:30 - 10:00", code: "PKN-01", subject: "Pendidikan Pancasila & Kewarganegaraan", instructor: "Guru PKN", room: "Ruang XI PPLG 2", type: "UMUM" },
-      { period: 3, time: "10:00 - 10:15", code: "REC-01", subject: "Tactical Recess / Istirahat", instructor: "-", room: "Mess Hall", type: "ISTIRAHAT" },
-      { period: 4, time: "10:15 - 12:00", code: "PBO-02", subject: "PBO Lanjutan & Architecture Pattern", instructor: "Guru Kejuruan", room: "Lab Software 2", type: "KEJURUAN" },
-      { period: 5, time: "12:00 - 12:45", code: "REC-02", subject: "Ishoma / Spiritual Routine", instructor: "-", room: "Mosque", type: "ISTIRAHAT" },
-      { period: 6, time: "12:45 - 15:00", code: "SEC-01", subject: "Cyber Security & Code Review", instructor: "Guru Kejuruan", room: "Lab Software 2", type: "KEJURUAN" },
+      { period: "SAIH", time: "06:30 - 07:10", code: "EKO-01", subject: "Kamis Alami (Ekologi)", instructor: "Tim Lingkungan Hidup", room: "Area Kampus Hijau", type: "PEMBIASAAN" },
+      { period: "1", time: "07:10 - 07:50", code: "PIL-01", subject: "Pilihan PPLG", instructor: "Dewi Kania, S.Pd.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "2", time: "07:50 - 08:30", code: "PIL-01", subject: "Pilihan PPLG", instructor: "Dewi Kania, S.Pd.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "3", time: "08:30 - 09:10", code: "IND-02", subject: "Bahasa Indonesia", instructor: "Eva Yuliani, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "REC 1", time: "09:10 - 09:25", code: "IST-01", subject: "Istirahat ke-1", instructor: "-", room: "Area Sekolah", type: "ISTIRAHAT" },
+      { period: "4", time: "09:25 - 10:05", code: "IND-02", subject: "Bahasa Indonesia", instructor: "Eva Yuliani, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "5", time: "10:05 - 10:45", code: "ING-02", subject: "Bahasa Inggris", instructor: "Tini Murtiningsih, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "6", time: "10:45 - 11:25", code: "ING-02", subject: "Bahasa Inggris", instructor: "Tini Murtiningsih, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "REC 2", time: "11:25 - 12:30", code: "IST-02", subject: "Istirahat ke-2 (Ishoma)", instructor: "-", room: "Masjid & Area Istirahat", type: "ISTIRAHAT" },
+      { period: "7", time: "12:30 - 13:10", code: "ING-02", subject: "Bahasa Inggris", instructor: "Tini Murtiningsih, S.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "8", time: "13:10 - 13:50", code: "RPL-07", subject: "Konsentrasi RPL", instructor: "A. Luddie Tri S., S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "9", time: "13:50 - 14:30", code: "RPL-07", subject: "Konsentrasi RPL", instructor: "A. Luddie Tri S., S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "10", time: "14:30 - 15:10", code: "RPL-07", subject: "Konsentrasi RPL", instructor: "A. Luddie Tri S., S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "11", time: "15:10 - 15:50", code: "RPL-07", subject: "Konsentrasi RPL", instructor: "A. Luddie Tri S., S.T.", room: "Lab Software", type: "KEJURUAN" },
     ],
   },
   {
     day: "FRIDAY",
     dayIndo: "JUM'AT",
     code: "SCH-FRI-05",
+    morningActivity: "Kerohanian",
     periods: [
-      { period: 1, time: "07:00 - 08:00", code: "SEN-01", subject: "Kebugaran Fisik / Senam Pagi", instructor: "Instruktur", room: "Main Ground", type: "UMUM" },
-      { period: 2, time: "08:00 - 09:30", code: "PJOK-01", subject: "Pendidikan Jasmani & Kesehatan", instructor: "Guru PJOK", room: "Field / Arena", type: "UMUM" },
-      { period: 3, time: "09:30 - 09:45", code: "REC-01", subject: "Tactical Recess / Istirahat", instructor: "-", room: "Mess Hall", type: "ISTIRAHAT" },
-      { period: 4, time: "09:45 - 11:30", code: "EKS-01", subject: "Evaluasi Mingguan & Pembinaan Wali Kelas", instructor: "Ibu Sarah Siti Sumaerah", room: "Ruang XI PPLG 2", type: "UMUM" },
-      { period: 5, time: "11:30 - 13:00", code: "REL-01", subject: "Sholat Jum'at & Sanitasi Sektor", instructor: "Dewan Keagamaan", room: "Mosque", type: "UMUM" },
+      { period: "SAIH", time: "06:30 - 07:10", code: "ROH-01", subject: "Kerohanian (Kajian / Doa)", instructor: "Tim Rohis / Pembina", room: "Masjid / Lapangan", type: "PEMBIASAAN" },
+      { period: "1", time: "07:10 - 07:50", code: "PIL-02", subject: "Pilihan PPLG", instructor: "Yaqub Hadi Permana, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "2", time: "07:50 - 08:30", code: "PIL-02", subject: "Pilihan PPLG", instructor: "Yaqub Hadi Permana, S.T.", room: "Lab Software", type: "KEJURUAN" },
+      { period: "3", time: "08:30 - 09:10", code: "PKN-01", subject: "PKn", instructor: "Guru PKn", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "REC 1", time: "09:10 - 09:25", code: "IST-01", subject: "Istirahat ke-1", instructor: "-", room: "Area Sekolah", type: "ISTIRAHAT" },
+      { period: "4", time: "09:25 - 10:05", code: "PKN-01", subject: "PKn", instructor: "Guru PKn", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "5", time: "10:05 - 10:45", code: "PAB-01", subject: "PABP (Pendidikan Agama & Budi Pekerti)", instructor: "Dikdik Juanda, S.Pd.I., M.M.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "6", time: "10:45 - 11:25", code: "PAB-01", subject: "PABP (Pendidikan Agama & Budi Pekerti)", instructor: "Dikdik Juanda, S.Pd.I., M.M.Pd.", room: "Ruang XII RPL 2", type: "UMUM" },
+      { period: "POST", time: "11:25 - 13:00", code: "REL-01", subject: "Sholat Jum'at & Kepulangan", instructor: "Dewan Keagamaan", room: "Masjid Sekolah", type: "PEMBIASAAN" },
     ],
   },
 ];

@@ -73,11 +73,17 @@ export default function ChainOfCommand() {
               <circle cx="12" cy="11" r="3" />
             </svg>
           </div>
-          <h3 className="font-space-mono font-bold text-xl mb-0.5">WALI KELAS</h3>
-          <p className="label-md text-primary mb-3">Ibu Sarah Siti Sumaerah</p>
+          <h3 className="font-space-mono font-bold text-xl mb-0.5">
+            WALI KELAS {selectedClass === "12" ? "XII" : "XI"}
+          </h3>
+          <p className="label-md text-primary mb-3">
+            {selectedClass === "12" ? "A. Luddie Tri S., S.T." : "Sarah Siti Sumaerah, S.T."}
+          </p>
           <div className="border-t border-dashed border-secondary/40 pt-2.5 flex justify-between items-center text-xs font-courier">
             <span className="opacity-70">ROLE: ADVISOR</span>
-            <span className="text-primary font-bold">ACTIVE COMMAND</span>
+            <span className="text-primary font-bold">
+              {selectedClass === "12" ? "ACTIVE COMMAND" : "HISTORICAL COMMAND"}
+            </span>
           </div>
         </div>
 

@@ -22,6 +22,7 @@ export default function Navbar() {
     { href: "/#dossiers", label: "Agents Roster", code: "AGT-04" },
     { href: "/#operations", label: "Piket & Ops", code: "OPS-05" },
     { href: "/#schedule", label: "Timetable", code: "SCH-06" },
+    { href: "/gallery", label: "Mission Album", code: "ALB-07" },
   ];
 
   return (

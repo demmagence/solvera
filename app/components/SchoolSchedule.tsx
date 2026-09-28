@@ -5,7 +5,7 @@ import { SCHOOL_TIMETABLE, TIMETABLE_METADATA } from "../data/schedule";
 
 export default function SchoolSchedule() {
   const [selectedDayIdx, setSelectedDayIdx] = useState(0);
-  const [viewMode, setViewMode] = useState<"timeline" | "matrix">("timeline");
+  const [viewMode, setViewMode] = useState<"matrix" | "timeline">("matrix");
 
   const activeDay = SCHOOL_TIMETABLE[selectedDayIdx];
 
@@ -31,6 +31,17 @@ export default function SchoolSchedule() {
           <div className="flex items-center bg-surface-container border-2 border-secondary shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] p-1">
             <button
               type="button"
+              onClick={() => setViewMode("matrix")}
+              className={`px-3 py-1.5 font-space-mono text-xs font-bold uppercase transition-all ${
+                viewMode === "matrix"
+                  ? "bg-primary text-surface shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                  : "text-secondary hover:bg-surface"
+              }`}
+            >
+              Tabel Matriks
+            </button>
+            <button
+              type="button"
               onClick={() => setViewMode("timeline")}
               className={`px-3 py-1.5 font-space-mono text-xs font-bold uppercase transition-all ${
                 viewMode === "timeline"
@@ -40,136 +51,11 @@ export default function SchoolSchedule() {
             >
               Timeline View
             </button>
-            <button
-              type="button"
-              onClick={() => setViewMode("matrix")}
-              className={`px-3 py-1.5 font-space-mono text-xs font-bold uppercase transition-all ${
-                viewMode === "matrix"
-                  ? "bg-secondary text-surface shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
-                  : "text-secondary hover:bg-surface"
-              }`}
-            >
-              Tabel Matriks
-            </button>
           </div>
         </div>
       </div>
 
-      {viewMode === "timeline" ? (
-        /* TIMELINE VIEW (Interactive Day by Day) */
-        <div className="space-y-6">
-          {/* Day Selector Tabs */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-courier text-xs font-bold mr-2 uppercase opacity-70">PILIH HARI MISI:</span>
-            {SCHOOL_TIMETABLE.map((dayData, idx) => (
-              <button
-                key={dayData.day}
-                type="button"
-                onClick={() => setSelectedDayIdx(idx)}
-                className={`px-4 py-2 font-space-mono text-xs font-bold uppercase transition-all border border-secondary ${
-                  selectedDayIdx === idx
-                    ? "bg-primary text-surface shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
-                    : "bg-surface text-secondary hover:bg-surface-container shadow-sm"
-                }`}
-              >
-                {dayData.dayIndo}
-              </button>
-            ))}
-          </div>
-
-          {/* Timetable Matrix Card */}
-          <div className="dossier-card bg-surface p-6 sm:p-8">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b-2 border-secondary pb-4 mb-6">
-              <div>
-                <span className="font-courier text-xs text-primary font-bold tracking-widest uppercase">
-                  {activeDay.code} {"//"} {activeDay.day}
-                </span>
-                <h3 className="font-space-mono text-2xl font-bold text-secondary mt-0.5">
-                  AGENDA KBM: {activeDay.dayIndo}
-                </h3>
-                <p className="font-courier text-xs opacity-75 mt-1">
-                  Kegiatan Awal (06:30 - 07:10): <strong>{activeDay.morningActivity}</strong>
-                </p>
-              </div>
-              <div className="font-courier text-xs bg-surface-container px-3 py-1.5 border border-secondary">
-                TOTAL BLOK: {activeDay.periods.length} PERIODE
-              </div>
-            </div>
-
-            {/* Periods List */}
-            <div className="space-y-3.5">
-              {activeDay.periods.map((period, i) => (
-                <div
-                  key={i}
-                  className={`p-3.5 sm:p-4 border-2 border-secondary transition-all flex flex-col md:flex-row md:items-center justify-between gap-3 ${
-                    period.type === "ISTIRAHAT"
-                      ? "bg-[#efeded] border-dashed opacity-85"
-                      : period.type === "PEMBIASAAN"
-                      ? "bg-[#f5f0e6] shadow-[2px_2px_0px_0px_rgba(26,26,26,0.6)]"
-                      : period.type === "KEJURUAN"
-                      ? "bg-surface hover:bg-[#f5f3f3] shadow-[4px_4px_0px_0px_rgba(26,26,26,0.9)]"
-                      : "bg-surface hover:bg-[#f5f3f3] shadow-[3px_3px_0px_0px_rgba(26,26,26,0.6)]"
-                  }`}
-                >
-                  {/* Left: Period Number & Time */}
-                  <div className="flex items-center gap-3.5 min-w-[210px]">
-                    <div
-                      className={`w-11 h-11 border-2 border-secondary flex items-center justify-center font-space-mono font-bold text-xs sm:text-sm shrink-0 ${
-                        period.type === "KEJURUAN"
-                          ? "bg-primary text-surface"
-                          : period.type === "ISTIRAHAT"
-                          ? "bg-secondary text-surface"
-                          : period.type === "PEMBIASAAN"
-                          ? "bg-[#474744] text-surface"
-                          : "bg-surface text-secondary"
-                      }`}
-                    >
-                      {period.period}
-                    </div>
-                    <div>
-                      <span className="font-space-mono text-xs font-bold block text-secondary">{period.time}</span>
-                      <span className="font-courier text-[10px] text-primary font-bold tracking-wider">{period.code}</span>
-                    </div>
-                  </div>
-
-                  {/* Middle: Subject & Instructor */}
-                  <div className="flex-1">
-                    <h4 className="font-space-mono text-base font-bold text-secondary leading-snug">
-                      {period.subject}
-                    </h4>
-                    {period.instructor !== "-" && (
-                      <p className="font-courier text-xs opacity-80 mt-0.5">
-                        Guru / Pengampu: <strong>{period.instructor}</strong>
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Right: Room & Badge */}
-                  <div className="flex items-center gap-3 self-end md:self-auto shrink-0">
-                    <div className="text-right font-courier text-xs hidden sm:block">
-                      <span className="opacity-60 block text-[9px]">LOKASI:</span>
-                      <strong className="text-secondary">{period.room}</strong>
-                    </div>
-                    <span
-                      className={`font-courier text-[10px] font-bold px-2 py-0.5 border ${
-                        period.type === "KEJURUAN"
-                          ? "border-primary text-primary bg-primary/10"
-                          : period.type === "ISTIRAHAT"
-                          ? "border-secondary/40 text-secondary opacity-60"
-                          : period.type === "PEMBIASAAN"
-                          ? "border-secondary text-secondary bg-[#eae8e7]"
-                          : "border-secondary text-secondary"
-                      }`}
-                    >
-                      {period.type}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (
+      {viewMode === "matrix" ? (
         /* MATRIX TABLE VIEW (Full aSc Timetable Grid Layout) */
         <div className="space-y-4">
           <div className="dossier-card bg-surface p-4 sm:p-6 overflow-x-auto shadow-[6px_6px_0px_0px_rgba(26,26,26,1)]">
@@ -403,6 +289,120 @@ export default function SchoolSchedule() {
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      ) : (
+        /* TIMELINE VIEW (Interactive Day by Day) */
+        <div className="space-y-6">
+          {/* Day Selector Tabs */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-courier text-xs font-bold mr-2 uppercase opacity-70">PILIH HARI MISI:</span>
+            {SCHOOL_TIMETABLE.map((dayData, idx) => (
+              <button
+                key={dayData.day}
+                type="button"
+                onClick={() => setSelectedDayIdx(idx)}
+                className={`px-4 py-2 font-space-mono text-xs font-bold uppercase transition-all border border-secondary ${
+                  selectedDayIdx === idx
+                    ? "bg-primary text-surface shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
+                    : "bg-surface text-secondary hover:bg-surface-container shadow-sm"
+                }`}
+              >
+                {dayData.dayIndo}
+              </button>
+            ))}
+          </div>
+
+          {/* Timetable Matrix Card */}
+          <div className="dossier-card bg-surface p-6 sm:p-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b-2 border-secondary pb-4 mb-6">
+              <div>
+                <span className="font-courier text-xs text-primary font-bold tracking-widest uppercase">
+                  {activeDay.code} {"//"} {activeDay.day}
+                </span>
+                <h3 className="font-space-mono text-2xl font-bold text-secondary mt-0.5">
+                  AGENDA KBM: {activeDay.dayIndo}
+                </h3>
+                <p className="font-courier text-xs opacity-75 mt-1">
+                  Kegiatan Awal (06:30 - 07:10): <strong>{activeDay.morningActivity}</strong>
+                </p>
+              </div>
+              <div className="font-courier text-xs bg-surface-container px-3 py-1.5 border border-secondary">
+                TOTAL BLOK: {activeDay.periods.length} PERIODE
+              </div>
+            </div>
+
+            {/* Periods List */}
+            <div className="space-y-3.5">
+              {activeDay.periods.map((period, i) => (
+                <div
+                  key={i}
+                  className={`p-3.5 sm:p-4 border-2 border-secondary transition-all flex flex-col md:flex-row md:items-center justify-between gap-3 ${
+                    period.type === "ISTIRAHAT"
+                      ? "bg-[#efeded] border-dashed opacity-85"
+                      : period.type === "PEMBIASAAN"
+                      ? "bg-[#f5f0e6] shadow-[2px_2px_0px_0px_rgba(26,26,26,0.6)]"
+                      : period.type === "KEJURUAN"
+                      ? "bg-surface hover:bg-[#f5f3f3] shadow-[4px_4px_0px_0px_rgba(26,26,26,0.9)]"
+                      : "bg-surface hover:bg-[#f5f3f3] shadow-[3px_3px_0px_0px_rgba(26,26,26,0.6)]"
+                  }`}
+                >
+                  {/* Left: Period Number & Time */}
+                  <div className="flex items-center gap-3.5 min-w-[210px]">
+                    <div
+                      className={`w-11 h-11 border-2 border-secondary flex items-center justify-center font-space-mono font-bold text-xs sm:text-sm shrink-0 ${
+                        period.type === "KEJURUAN"
+                          ? "bg-primary text-surface"
+                          : period.type === "ISTIRAHAT"
+                          ? "bg-secondary text-surface"
+                          : period.type === "PEMBIASAAN"
+                          ? "bg-[#474744] text-surface"
+                          : "bg-surface text-secondary"
+                      }`}
+                    >
+                      {period.period}
+                    </div>
+                    <div>
+                      <span className="font-space-mono text-xs font-bold block text-secondary">{period.time}</span>
+                      <span className="font-courier text-[10px] text-primary font-bold tracking-wider">{period.code}</span>
+                    </div>
+                  </div>
+
+                  {/* Middle: Subject & Instructor */}
+                  <div className="flex-1">
+                    <h4 className="font-space-mono text-base font-bold text-secondary leading-snug">
+                      {period.subject}
+                    </h4>
+                    {period.instructor !== "-" && (
+                      <p className="font-courier text-xs opacity-80 mt-0.5">
+                        Guru / Pengampu: <strong>{period.instructor}</strong>
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Right: Room & Badge */}
+                  <div className="flex items-center gap-3 self-end md:self-auto shrink-0">
+                    <div className="text-right font-courier text-xs hidden sm:block">
+                      <span className="opacity-60 block text-[9px]">LOKASI:</span>
+                      <strong className="text-secondary">{period.room}</strong>
+                    </div>
+                    <span
+                      className={`font-courier text-[10px] font-bold px-2 py-0.5 border ${
+                        period.type === "KEJURUAN"
+                          ? "border-primary text-primary bg-primary/10"
+                          : period.type === "ISTIRAHAT"
+                          ? "border-secondary/40 text-secondary opacity-60"
+                          : period.type === "PEMBIASAAN"
+                          ? "border-secondary text-secondary bg-[#eae8e7]"
+                          : "border-secondary text-secondary"
+                      }`}
+                    >
+                      {period.type}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

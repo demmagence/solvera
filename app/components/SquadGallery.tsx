@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { SQUAD_SLIDES } from "../data/gallery";
 import { STUDENTS_DATA } from "../data/students";
 
@@ -290,6 +291,35 @@ export default function SquadGallery() {
             />
           ))}
         </div>
+
+        {/* Featured Mission Album (50 Full Photos) Callout Banner */}
+        <div className="w-full max-w-4xl mt-8 p-4 sm:p-5 bg-[#e6e3e0] border-2 border-secondary shadow-[5px_5px_0px_0px_rgba(26,26,26,1)] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-start sm:items-center gap-3.5 text-left">
+            <div className="w-10 h-10 shrink-0 bg-primary text-surface border border-secondary shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] flex items-center justify-center font-space-mono font-bold text-lg">
+              50
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-space-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-secondary">
+                  ARSIP OPERASIONAL PENUH: 50 FOTO BERSAMA
+                </span>
+                <span className="bg-primary text-surface text-[9px] font-courier font-bold px-1.5 py-0.5 shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]">
+                  FULL FHD 1080P
+                </span>
+              </div>
+              <p className="font-hanken text-xs opacity-85 mt-1 leading-relaxed">
+                Akses galeri khusus skuad Solvera Class. Dilengkapi inspeksi <strong>Interactive Lightbox</strong>, zoom detail, navigasi keyboard panah ◄/►, serta opsi unduh resolusi asli.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/gallery"
+            className="w-full sm:w-auto shrink-0 px-5 py-2.5 bg-primary text-surface font-space-mono text-xs font-bold shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] hover:bg-primary/90 hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 transition-all flex items-center justify-center gap-2 border border-secondary"
+          >
+            <span>BUKA MISSION ALBUM</span>
+            <span>►</span>
+          </Link>
+        </div>
       </div>
 
       <div className="w-full h-px bg-secondary opacity-30 my-12"></div>
@@ -396,15 +426,30 @@ export default function SquadGallery() {
               <div>
                 {/* Visual Avatar Box */}
                 <div className="bg-surface p-2.5 pb-3 border border-secondary shadow-sm mb-3 mt-1">
-                  <div className="aspect-[4/3] bg-[#d9d9d9] flex flex-col items-center justify-center border border-secondary/40 text-secondary/40 relative overflow-hidden">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                    <span className="font-courier text-[9px] tracking-widest uppercase mt-1 opacity-70">
-                      DOSSIER PHOTO SECURED
-                    </span>
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.06)_50%,rgba(0,0,0,0.06))] bg-[length:100%_4px] mix-blend-overlay"></div>
+                  <div className="aspect-[3/4] bg-[#d9d9d9] flex flex-col items-center justify-center border border-secondary/40 text-secondary/40 relative overflow-hidden">
+                    {agent.photo ? (
+                      <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={agent.photo}
+                          alt={agent.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover object-top"
+                        />
+                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.08)_50%,rgba(0,0,0,0.08))] bg-[length:100%_4px] mix-blend-overlay pointer-events-none"></div>
+                      </>
+                    ) : (
+                      <>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <span className="font-courier text-[9px] tracking-widest uppercase mt-1 opacity-70">
+                          CLASSIFIED PHOTO
+                        </span>
+                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.06)_50%,rgba(0,0,0,0.06))] bg-[length:100%_4px] mix-blend-overlay"></div>
+                      </>
+                    )}
                   </div>
                 </div>
 

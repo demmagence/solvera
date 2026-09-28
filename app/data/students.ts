@@ -24,6 +24,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Spiritual Resilience",
     specialty2: "Ethical Integrity",
     status: "ACTIVE",
+    photo: "/students/agt-01.jpg",
   },
   {
     id: "AGT-02",
@@ -36,6 +37,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Syllabus Analysis",
     specialty2: "Academic Strategy",
     status: "ACTIVE",
+    photo: "/students/agt-02.jpg",
   },
   {
     id: "AGT-03",
@@ -48,6 +50,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Tactical Defense",
     specialty2: "Perimeter Control",
     status: "ACTIVE",
+    photo: "/students/agt-03.jpg",
   },
   {
     id: "AGT-04",
@@ -60,6 +63,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Operational Logistics",
     specialty2: "Tactical Command",
     status: "ACTIVE",
+    photo: "/students/agt-04.jpg",
   },
   {
     id: "AGT-05",
@@ -72,6 +76,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Code Breaking",
     specialty2: "Signal Intelligence",
     status: "ACTIVE",
+    photo: "/students/agt-05.jpg",
   },
   {
     id: "AGT-06",
@@ -84,6 +89,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Reconnaissance",
     specialty2: "Data Interception",
     status: "ACTIVE",
+    photo: "/students/agt-06.jpg",
   },
   {
     id: "AGT-07",
@@ -96,6 +102,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Hardware Systems",
     specialty2: "Field Administration",
     status: "ACTIVE",
+    photo: "/students/agt-07.jpg",
   },
   {
     id: "AGT-08",
@@ -108,6 +115,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Moral Protocol",
     specialty2: "Internal Harmony",
     status: "ACTIVE",
+    photo: "/students/agt-08.jpg",
   },
   {
     id: "AGT-09",
@@ -120,6 +128,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Digital Archiving",
     specialty2: "Evidence Curation",
     status: "ACTIVE",
+    photo: "/students/agt-09.jpg",
   },
   {
     id: "AGT-10",
@@ -132,6 +141,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Physical Conditioning",
     specialty2: "Logistical Armoury",
     status: "ACTIVE",
+    photo: "/students/agt-10.jpg",
   },
   {
     id: "AGT-11",
@@ -144,6 +154,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Event Documentation",
     specialty2: "Archival Forensics",
     status: "ACTIVE",
+    photo: "/students/agt-11.jpg",
   },
   {
     id: "AGT-12",
@@ -156,6 +167,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Security Clearance",
     specialty2: "Fiscal Audit",
     status: "ACTIVE",
+    photo: "/students/agt-12.jpg",
   },
   {
     id: "AGT-13",
@@ -168,6 +180,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Strategic Coordination",
     specialty2: "Sanitation Protocol",
     status: "ACTIVE",
+    photo: "/students/agt-13.jpg",
   },
   {
     id: "AGT-14",
@@ -180,6 +193,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Infiltration",
     specialty2: "Digital Forensics",
     status: "ACTIVE",
+    photo: "/students/agt-14.jpg",
   },
   {
     id: "AGT-15",
@@ -192,6 +206,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Sanitary Sweep",
     specialty2: "Rapid Cleanse",
     status: "ACTIVE",
+    photo: "/students/agt-15.jpg",
   },
   {
     id: "AGT-16",
@@ -204,6 +219,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Network Routing",
     specialty2: "Field Deployment",
     status: "ACTIVE",
+    photo: "/students/agt-16.jpg",
   },
   {
     id: "AGT-17",
@@ -216,6 +232,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Early Patrol",
     specialty2: "Systems Check",
     status: "ACTIVE",
+    photo: "/students/agt-17.jpg",
   },
   {
     id: "AGT-18",
@@ -228,6 +245,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Communication Relay",
     specialty2: "Surveillance",
     status: "ACTIVE",
+    photo: "/students/agt-18.jpg",
   },
   {
     id: "AGT-19",
@@ -240,6 +258,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "High Command",
     specialty2: "System Architecture",
     status: "ACTIVE",
+    photo: "/students/agt-19.jpg",
   },
   {
     id: "AGT-20",
@@ -264,6 +283,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Inventory Logistics",
     specialty2: "Budgetary Control",
     status: "ACTIVE",
+    photo: "/students/agt-21.jpg",
   },
   {
     id: "AGT-22",
@@ -276,6 +296,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Covert Logistics",
     specialty2: "Asset Protection",
     status: "ACTIVE",
+    photo: "/students/agt-22.jpg",
   },
   {
     id: "AGT-23",
@@ -288,6 +309,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Visual Surveillance",
     specialty2: "Media Registry",
     status: "ACTIVE",
+    photo: "/students/agt-23.jpg",
   },
   {
     id: "AGT-24",
@@ -300,6 +322,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Financial Recon",
     specialty2: "Asset Verification",
     status: "ACTIVE",
+    photo: "/students/agt-24.jpg",
   },
   {
     id: "AGT-25",
@@ -312,6 +335,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Cashflow Security",
     specialty2: "Treasury Safeguard",
     status: "ACTIVE",
+    photo: "/students/agt-25.jpg",
   },
   {
     id: "AGT-26",
@@ -324,6 +348,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Visual Layouts",
     specialty2: "Intelligence Dispatch",
     status: "ACTIVE",
+    photo: "/students/agt-26.jpg",
   },
   {
     id: "AGT-27",
@@ -336,6 +361,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Command Authority",
     specialty2: "Tactical Execution",
     status: "ACTIVE",
+    photo: "/students/agt-27.jpg",
   },
   {
     id: "AGT-28",
@@ -348,6 +374,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Roster Management",
     specialty2: "Administrative Order",
     status: "ACTIVE",
+    photo: "/students/agt-28.jpg",
   },
   {
     id: "AGT-29",
@@ -360,6 +387,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Curriculum Intel",
     specialty2: "Assessment Drill",
     status: "ACTIVE",
+    photo: "/students/agt-29.jpg",
   },
   {
     id: "AGT-30",
@@ -372,6 +400,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Class Minutes",
     specialty2: "Command Records",
     status: "ACTIVE",
+    photo: "/students/agt-30.jpg",
   },
   {
     id: "AGT-31",
@@ -384,6 +413,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Early Warning",
     specialty2: "Signal Monitoring",
     status: "ACTIVE",
+    photo: "/students/agt-31.jpg",
   },
   {
     id: "AGT-32",
@@ -396,6 +426,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Expense Auditing",
     specialty2: "Tactical Dues",
     status: "ACTIVE",
+    photo: "/students/agt-32.jpg",
   },
   {
     id: "AGT-33",
@@ -408,6 +439,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Silent Infiltration",
     specialty2: "Counter-Surveillance",
     status: "ACTIVE",
+    photo: "/students/agt-33.jpg",
   },
   {
     id: "AGT-34",
@@ -420,6 +452,7 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Central Communications",
     specialty2: "Disciplinary Watch",
     status: "ACTIVE",
+    photo: "/students/agt-34.jpg",
   },
   {
     id: "AGT-35",
@@ -432,5 +465,6 @@ export const STUDENTS_DATA: StudentAgent[] = [
     specialty1: "Supreme Archive",
     specialty2: "Protocol Dispatch",
     status: "ACTIVE",
+    photo: "/students/agt-35.jpg",
   },
 ];

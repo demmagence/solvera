@@ -2,6 +2,61 @@
 
 import { useState } from "react";
 
+interface AgentPhotoProps {
+  photo?: string;
+  name: string;
+  id?: string;
+  alias?: string;
+  size?: "sm" | "md" | "lg" | "full";
+}
+
+function AgentPhoto({ photo, name, id, alias, size = "md" }: AgentPhotoProps) {
+  const sizeClasses = {
+    sm: "w-11 h-14 sm:w-12 sm:h-16",
+    md: "w-20 h-26 sm:w-24 sm:h-32",
+    lg: "w-24 h-32 sm:w-28 sm:h-36",
+    full: "w-full aspect-[4/5]",
+  }[size];
+
+  return (
+    <div
+      className={`relative ${sizeClasses} shrink-0 bg-secondary border-2 border-secondary shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] overflow-hidden group select-none`}
+    >
+      {photo ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={photo}
+          alt={name}
+          loading="lazy"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center bg-[#242424] text-surface p-1 text-center">
+          <span className="font-space-mono text-[8px] font-bold text-primary tracking-widest">[ CLASSIFIED ]</span>
+          <span className="font-courier text-[7px] opacity-60 mt-0.5">NO PHOTO</span>
+        </div>
+      )}
+
+      {/* Scanline Noir Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)_50%,rgba(0,0,0,0.12)_50%,rgba(0,0,0,0.12))] bg-[length:100%_4px] pointer-events-none opacity-60"></div>
+
+      {/* ID Badge */}
+      {id && (
+        <span className="absolute top-1 left-1 bg-primary text-surface font-space-mono text-[8px] font-bold px-1 py-0.2 shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]">
+          {id}
+        </span>
+      )}
+
+      {/* Alias */}
+      {alias && (
+        <span className="absolute bottom-1 right-1 bg-secondary/85 text-surface font-courier text-[7px] sm:text-[8px] px-1 backdrop-blur">
+          {alias}
+        </span>
+      )}
+    </div>
+  );
+}
+
 export default function ChainOfCommand() {
   const [selectedClass, setSelectedClass] = useState<"12" | "11">("12");
 
@@ -15,7 +70,7 @@ export default function ChainOfCommand() {
           </div>
           <h2 className="headline-md">Chain of Command Hierarchy</h2>
           <p className="font-hanken text-sm sm:text-base opacity-85 mt-1 max-w-xl">
-            Command structure and division responsibilities. Switch periods below to examine operational rosters.
+            Command structure and division responsibilities. Switch periods below to examine operational rosters with complete operative portraits.
           </p>
         </div>
 
@@ -67,8 +122,8 @@ export default function ChainOfCommand() {
           <div className="absolute top-[-10px] left-[-10px] bg-primary text-surface px-2.5 py-1 label-sm">
             Clearance L1
           </div>
-          <div className="w-14 h-14 rounded-full border-4 border-secondary mx-auto mb-3 flex items-center justify-center bg-surface-container">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="w-16 h-16 rounded-full border-4 border-secondary mx-auto mb-3 flex items-center justify-center bg-surface-container shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               <circle cx="12" cy="11" r="3" />
             </svg>
@@ -105,53 +160,64 @@ export default function ChainOfCommand() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* KM KELAS 12 */}
-              <div className="dossier-card p-6 bg-surface">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="label-sm opacity-60">CHIEF OPERATIVE</span>
-                    <h3 className="font-space-mono font-bold text-xl text-secondary">KETUA MURID (KM)</h3>
-                    <p className="font-space-mono font-bold text-primary text-base mt-0.5">PANCA SATIA NUGRAHA</p>
+              <div className="dossier-card p-5 sm:p-6 bg-surface flex flex-col sm:flex-row gap-5 items-start">
+                <AgentPhoto
+                  photo="/students/agt-27.jpg"
+                  name="Panca Satia Nugraha"
+                  id="AGT-27"
+                  alias="MARSHAL"
+                  size="lg"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="label-sm opacity-60 text-[10px]">CHIEF OPERATIVE</span>
+                    <span className="font-courier text-[10px] text-primary font-bold bg-surface-container px-1.5 py-0.5 border border-secondary/40">
+                      CLEARANCE L2
+                    </span>
                   </div>
-                  <div className="p-2 border border-secondary bg-surface-container">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                      <path d="M2 17l10 5 10-5" />
-                      <path d="M2 12l10 5 10-5" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-85 leading-relaxed">
-                    Pemimpin skuad operasional kelas XII, koordinator komando utama, dan penanggung jawab tertinggi pelaksanaan
-                    seluruh misi akademik dan disiplin.
+                  <h3 className="font-space-mono font-bold text-lg sm:text-xl text-secondary">
+                    KETUA MURID (KM)
+                  </h3>
+                  <p className="font-space-mono font-bold text-primary text-base mt-0.5">
+                    PANCA SATIA NUGRAHA
                   </p>
+                  <div className="border-t border-secondary/40 pt-2.5 mt-2.5">
+                    <p className="text-xs sm:text-sm font-hanken opacity-85 leading-relaxed">
+                      Pemimpin skuad operasional kelas XII, koordinator komando utama, dan penanggung jawab tertinggi pelaksanaan seluruh misi akademik dan disiplin.
+                    </p>
+                  </div>
                 </div>
               </div>
 
               {/* WAKIL KM KELAS 12 */}
-              <div className="dossier-card p-6 bg-surface">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="label-sm opacity-60">DEPUTY CHIEF</span>
-                    <h3 className="font-space-mono font-bold text-xl text-secondary">WAKIL KETUA MURID</h3>
-                    <p className="font-space-mono font-bold text-primary text-base mt-0.5">DIKA PRAYOGA GUNAWAN</p>
+              <div className="dossier-card p-5 sm:p-6 bg-surface flex flex-col sm:flex-row gap-5 items-start">
+                <AgentPhoto
+                  photo="/students/agt-04.jpg"
+                  name="Dika Prayoga Gunawan"
+                  id="AGT-04"
+                  alias="AEGIS"
+                  size="lg"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="label-sm opacity-60 text-[10px]">DEPUTY CHIEF</span>
+                    <span className="font-courier text-[10px] text-primary font-bold bg-surface-container px-1.5 py-0.5 border border-secondary/40">
+                      CLEARANCE L2
+                    </span>
                   </div>
-                  <div className="p-2 border border-secondary bg-surface-container">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-85 leading-relaxed">
-                    Mendampingi komando KM, mengoordinasikan eksekusi taktis divisi internal, serta memastikan rantai logistik dan
-                    kontinuitas skuad berjalan presisi.
+                  <h3 className="font-space-mono font-bold text-lg sm:text-xl text-secondary">
+                    WAKIL KETUA MURID
+                  </h3>
+                  <p className="font-space-mono font-bold text-primary text-base mt-0.5">
+                    DIKA PRAYOGA GUNAWAN
                   </p>
+                  <div className="border-t border-secondary/40 pt-2.5 mt-2.5">
+                    <p className="text-xs sm:text-sm font-hanken opacity-85 leading-relaxed">
+                      Mendampingi komando KM, mengoordinasikan eksekusi taktis divisi internal, serta memastikan rantai logistik dan kontinuitas skuad berjalan presisi.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -161,47 +227,103 @@ export default function ChainOfCommand() {
           <div className="space-y-6">
             <div className="text-center">
               <span className="bg-secondary text-surface px-4 py-1 font-courier font-bold uppercase tracking-widest text-xs border-l-4 border-r-4 border-primary inline-block">
-                Level 3 // Core Administration & Treasury
+                Level 3 // Core Administration & Treasury (Kelas 12)
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Sekretaris */}
-              <div className="dossier-card p-5 bg-[#e6e3e0]">
-                <span className="label-sm opacity-60">REGISTRY LEAD</span>
-                <h4 className="font-space-mono font-bold text-base mt-1">SEKRETARIS</h4>
-                <p className="font-space-mono font-bold text-primary text-sm mb-3">SYAHIRA BILQIS HUMAIRA</p>
-                <div className="border-t border-secondary pt-2.5 text-xs font-hanken opacity-80 leading-relaxed">
+              <div className="dossier-card p-4 sm:p-5 bg-[#e6e3e0] flex flex-col justify-between">
+                <div>
+                  <AgentPhoto
+                    photo="/students/agt-35.jpg"
+                    name="Syahira Bilqis Humaira"
+                    id="AGT-35"
+                    alias="ORACLE"
+                    size="full"
+                  />
+                  <div className="flex justify-between items-center mb-0.5 mt-3">
+                    <span className="label-sm opacity-60 text-[10px]">REGISTRY LEAD</span>
+                    <span className="font-courier text-[9px] text-primary font-bold">L2</span>
+                  </div>
+                  <h4 className="font-space-mono font-bold text-base">SEKRETARIS</h4>
+                  <p className="font-space-mono font-bold text-primary text-xs sm:text-sm mt-0.5 mb-2 truncate">
+                    SYAHIRA BILQIS HUMAIRA
+                  </p>
+                </div>
+                <div className="border-t border-secondary/40 pt-2 text-xs font-hanken opacity-80 leading-relaxed">
                   Pencatatan logbook taktis, pengarsipan berkas dokumen penting, dan pengelolaan administrasi kelas.
                 </div>
               </div>
 
               {/* Wakil Sekretaris */}
-              <div className="dossier-card p-5 bg-[#e6e3e0]">
-                <span className="label-sm opacity-60">REGISTRY DEPUTY</span>
-                <h4 className="font-space-mono font-bold text-base mt-1">WAKIL SEKRETARIS</h4>
-                <p className="font-space-mono font-bold text-primary text-sm mb-3">FARIZ DZULHAMI</p>
-                <div className="border-t border-secondary pt-2.5 text-xs font-hanken opacity-80 leading-relaxed">
+              <div className="dossier-card p-4 sm:p-5 bg-[#e6e3e0] flex flex-col justify-between">
+                <div>
+                  <AgentPhoto
+                    photo="/students/agt-07.jpg"
+                    name="Fariz Dzulhami"
+                    id="AGT-07"
+                    alias="WRENCH"
+                    size="full"
+                  />
+                  <div className="flex justify-between items-center mb-0.5 mt-3">
+                    <span className="label-sm opacity-60 text-[10px]">REGISTRY DEPUTY</span>
+                    <span className="font-courier text-[9px] text-primary font-bold">L2</span>
+                  </div>
+                  <h4 className="font-space-mono font-bold text-base">WAKIL SEKRETARIS</h4>
+                  <p className="font-space-mono font-bold text-primary text-xs sm:text-sm mt-0.5 mb-2 truncate">
+                    FARIZ DZULHAMI
+                  </p>
+                </div>
+                <div className="border-t border-secondary/40 pt-2 text-xs font-hanken opacity-80 leading-relaxed">
                   Mendukung dokumentasi berkas harian, presensi, serta pendataan sistem operasional kelas.
                 </div>
               </div>
 
               {/* Bendahara */}
-              <div className="dossier-card p-5 bg-[#e6e3e0]">
-                <span className="label-sm opacity-60">FISCAL DIRECTOR</span>
-                <h4 className="font-space-mono font-bold text-base mt-1">BENDAHARA</h4>
-                <p className="font-space-mono font-bold text-primary text-sm mb-3">KIANO DEVARO RIDHO</p>
-                <div className="border-t border-secondary pt-2.5 text-xs font-hanken opacity-80 leading-relaxed">
+              <div className="dossier-card p-4 sm:p-5 bg-[#e6e3e0] flex flex-col justify-between">
+                <div>
+                  <AgentPhoto
+                    photo="/students/agt-12.jpg"
+                    name="Kiano Devaro Ridho"
+                    id="AGT-12"
+                    alias="LOCKDOWN"
+                    size="full"
+                  />
+                  <div className="flex justify-between items-center mb-0.5 mt-3">
+                    <span className="label-sm opacity-60 text-[10px]">FISCAL DIRECTOR</span>
+                    <span className="font-courier text-[9px] text-primary font-bold">L2</span>
+                  </div>
+                  <h4 className="font-space-mono font-bold text-base">BENDAHARA</h4>
+                  <p className="font-space-mono font-bold text-primary text-xs sm:text-sm mt-0.5 mb-2 truncate">
+                    KIANO DEVARO RIDHO
+                  </p>
+                </div>
+                <div className="border-t border-secondary/40 pt-2 text-xs font-hanken opacity-80 leading-relaxed">
                   Pengawasan peredaran kas operasional, alokasi anggaran misi, dan pengelolaan keuangan skuad.
                 </div>
               </div>
 
               {/* Wakil Bendahara */}
-              <div className="dossier-card p-5 bg-[#e6e3e0]">
-                <span className="label-sm opacity-60">FISCAL DEPUTY</span>
-                <h4 className="font-space-mono font-bold text-base mt-1">WAKIL BENDAHARA</h4>
-                <p className="font-space-mono font-bold text-primary text-sm mb-3">MUHAMMAD DERYL FABIENSYAH</p>
-                <div className="border-t border-secondary pt-2.5 text-xs font-hanken opacity-80 leading-relaxed">
+              <div className="dossier-card p-4 sm:p-5 bg-[#e6e3e0] flex flex-col justify-between">
+                <div>
+                  <AgentPhoto
+                    photo="/students/agt-21.jpg"
+                    name="Muhammad Deryl Fabiensyah"
+                    id="AGT-21"
+                    alias="ANVIL"
+                    size="full"
+                  />
+                  <div className="flex justify-between items-center mb-0.5 mt-3">
+                    <span className="label-sm opacity-60 text-[10px]">FISCAL DEPUTY</span>
+                    <span className="font-courier text-[9px] text-primary font-bold">L2</span>
+                  </div>
+                  <h4 className="font-space-mono font-bold text-base">WAKIL BENDAHARA</h4>
+                  <p className="font-space-mono font-bold text-primary text-xs sm:text-sm mt-0.5 mb-2 truncate">
+                    M DERYL FABIENSYAH
+                  </p>
+                </div>
+                <div className="border-t border-secondary/40 pt-2 text-xs font-hanken opacity-80 leading-relaxed">
                   Rekonsiliasi transaksi kas, pencatatan belanja logistik, dan audit saldo operasional rutin.
                 </div>
               </div>
@@ -212,65 +334,80 @@ export default function ChainOfCommand() {
           <div className="space-y-6">
             <div className="text-center">
               <span className="bg-secondary text-surface px-4 py-1 font-courier font-bold uppercase tracking-widest text-xs border-l-4 border-r-4 border-primary inline-block">
-                Level 4 // Field Divisions (Seksi Operasional)
+                Level 4 // Field Divisions (Seksi Operasional Kelas 12)
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {/* Sie Kebersihan */}
-              <div className="dossier-card p-6 bg-surface">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="label-sm opacity-60">SECTOR SANITATION</span>
-                    <h4 className="font-space-mono font-bold text-lg">SIE KEBERSIHAN</h4>
-                    <p className="font-space-mono font-bold text-primary text-sm mt-0.5">M ARKAN RAIHAN NUGRAHA</p>
+              <div className="dossier-card p-5 sm:p-6 bg-surface flex flex-col sm:flex-row gap-4 items-start">
+                <AgentPhoto
+                  photo="/students/agt-13.jpg"
+                  name="M Arkan Raihan Nugraha"
+                  id="AGT-13"
+                  alias="HAWK"
+                  size="md"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="label-sm opacity-60 text-[10px]">SECTOR SANITATION</span>
+                    <span className="font-courier text-[10px] text-primary font-bold">L2</span>
                   </div>
-                  <div className="p-2 border border-secondary bg-surface-container">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                    </svg>
+                  <h4 className="font-space-mono font-bold text-base sm:text-lg">SIE KEBERSIHAN</h4>
+                  <p className="font-space-mono font-bold text-primary text-xs sm:text-sm mt-0.5">
+                    M ARKAN RAIHAN NUGRAHA
+                  </p>
+                  <div className="border-t border-secondary/40 pt-2.5 mt-2.5 text-xs font-hanken opacity-85 leading-relaxed">
+                    Memimpin protokol sterilisasi ruang kelas, inspeksi jadwal piket harian, dan kenyamanan lingkungan kerja.
                   </div>
-                </div>
-                <div className="border-t border-secondary pt-3 text-xs sm:text-sm font-hanken opacity-85 leading-relaxed">
-                  Memimpin protokol sterilisasi ruang kelas, inspeksi jadwal piket harian, dan kenyamanan lingkungan kerja.
                 </div>
               </div>
 
               {/* Sie Peralatan */}
-              <div className="dossier-card p-6 bg-surface">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="label-sm opacity-60">ARMOURY & LOGISTICS</span>
-                    <h4 className="font-space-mono font-bold text-lg">SIE PERALATAN</h4>
-                    <p className="font-space-mono font-bold text-primary text-sm mt-0.5">JIBRIL IBNI JUBAIR</p>
+              <div className="dossier-card p-5 sm:p-6 bg-surface flex flex-col sm:flex-row gap-4 items-start">
+                <AgentPhoto
+                  photo="/students/agt-10.jpg"
+                  name="Jibril Ibni Jubair"
+                  id="AGT-10"
+                  alias="TITAN"
+                  size="md"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="label-sm opacity-60 text-[10px]">ARMOURY & LOGISTICS</span>
+                    <span className="font-courier text-[10px] text-primary font-bold">L2</span>
                   </div>
-                  <div className="p-2 border border-secondary bg-surface-container">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-                    </svg>
+                  <h4 className="font-space-mono font-bold text-base sm:text-lg">SIE PERALATAN</h4>
+                  <p className="font-space-mono font-bold text-primary text-xs sm:text-sm mt-0.5">
+                    JIBRIL IBNI JUBAIR
+                  </p>
+                  <div className="border-t border-secondary/40 pt-2.5 mt-2.5 text-xs font-hanken opacity-85 leading-relaxed">
+                    Inventarisasi sarana hardware, pengawasan perangkat keras/elektronik di ruang belajar, dan kesiapan fasilitas.
                   </div>
-                </div>
-                <div className="border-t border-secondary pt-3 text-xs sm:text-sm font-hanken opacity-85 leading-relaxed">
-                  Inventarisasi sarana hardware, pengawasan perangkat keras/elektronik di ruang belajar, dan kesiapan fasilitas.
                 </div>
               </div>
 
               {/* Sie Keagamaan */}
-              <div className="dossier-card p-6 bg-surface">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="label-sm opacity-60">MORAL & SPIRITUAL</span>
-                    <h4 className="font-space-mono font-bold text-lg">SIE KEAGAMAAN</h4>
-                    <p className="font-space-mono font-bold text-primary text-sm mt-0.5">ADIFTYA RAHMAD</p>
+              <div className="dossier-card p-5 sm:p-6 bg-surface flex flex-col sm:flex-row gap-4 items-start">
+                <AgentPhoto
+                  photo="/students/agt-01.jpg"
+                  name="Adiftya Rahmad"
+                  id="AGT-01"
+                  alias="VANGUARD"
+                  size="md"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="label-sm opacity-60 text-[10px]">MORAL & SPIRITUAL</span>
+                    <span className="font-courier text-[10px] text-primary font-bold">L2</span>
                   </div>
-                  <div className="p-2 border border-secondary bg-surface-container">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
+                  <h4 className="font-space-mono font-bold text-base sm:text-lg">SIE KEAGAMAAN</h4>
+                  <p className="font-space-mono font-bold text-primary text-xs sm:text-sm mt-0.5">
+                    ADIFTYA RAHMAD
+                  </p>
+                  <div className="border-t border-secondary/40 pt-2.5 mt-2.5 text-xs font-hanken opacity-85 leading-relaxed">
+                    Pembinaan ketahanan moral spiritual skuad, memimpin doa/ibadah bersama, dan menjaga etika serta keharmonisan.
                   </div>
-                </div>
-                <div className="border-t border-secondary pt-3 text-xs sm:text-sm font-hanken opacity-85 leading-relaxed">
-                  Pembinaan ketahanan moral spiritual skuad, memimpin doa/ibadah bersama, dan menjaga etika serta keharmonisan.
                 </div>
               </div>
             </div>
@@ -287,53 +424,64 @@ export default function ChainOfCommand() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* KM KELAS 11 */}
-              <div className="dossier-card p-6 bg-surface">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="label-sm opacity-60">COMMANDER (RET.)</span>
-                    <h3 className="font-space-mono font-bold text-xl text-secondary">KETUA MURID (KM)</h3>
-                    <p className="font-space-mono font-bold text-primary text-base mt-0.5">M. ARSA PRAYATA</p>
+              <div className="dossier-card p-5 sm:p-6 bg-surface flex flex-col sm:flex-row gap-5 items-start">
+                <AgentPhoto
+                  photo="/students/agt-19.jpg"
+                  name="Muhammad Arsa Prayata"
+                  id="AGT-19"
+                  alias="APEX"
+                  size="lg"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="label-sm opacity-60 text-[10px]">COMMANDER (RET.)</span>
+                    <span className="font-courier text-[10px] text-primary font-bold bg-surface-container px-1.5 py-0.5 border border-secondary/40">
+                      CLEARANCE L2
+                    </span>
                   </div>
-                  <div className="p-2 border border-secondary bg-surface-container">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                      <path d="M2 17l10 5 10-5" />
-                      <path d="M2 12l10 5 10-5" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-85 leading-relaxed">
-                    Memimpin skuad operasional kelas XI PPLG RPL 2, koordinasi taktis tingkat tinggi, dan penanggung jawab utama
-                    misi awal pembentukan Solvera.
+                  <h3 className="font-space-mono font-bold text-lg sm:text-xl text-secondary">
+                    KETUA MURID (KM)
+                  </h3>
+                  <p className="font-space-mono font-bold text-primary text-base mt-0.5">
+                    MUHAMMAD ARSA PRAYATA
                   </p>
+                  <div className="border-t border-secondary/40 pt-2.5 mt-2.5">
+                    <p className="text-xs sm:text-sm font-hanken opacity-85 leading-relaxed">
+                      Memimpin skuad operasional kelas XI PPLG RPL 2, koordinasi taktis tingkat tinggi, dan penanggung jawab utama misi awal pembentukan Solvera.
+                    </p>
+                  </div>
                 </div>
               </div>
 
               {/* WAKIL KM KELAS 11 */}
-              <div className="dossier-card p-6 bg-surface">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="label-sm opacity-60">DEPUTY COMMANDER</span>
-                    <h3 className="font-space-mono font-bold text-xl text-secondary">WAKIL KETUA MURID</h3>
-                    <p className="font-space-mono font-bold text-primary text-base mt-0.5">M. ARKAN RAIHAN NUGRAHA</p>
+              <div className="dossier-card p-5 sm:p-6 bg-surface flex flex-col sm:flex-row gap-5 items-start">
+                <AgentPhoto
+                  photo="/students/agt-13.jpg"
+                  name="M. Arkan Raihan Nugraha"
+                  id="AGT-13"
+                  alias="HAWK"
+                  size="lg"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="label-sm opacity-60 text-[10px]">DEPUTY COMMANDER</span>
+                    <span className="font-courier text-[10px] text-primary font-bold bg-surface-container px-1.5 py-0.5 border border-secondary/40">
+                      CLEARANCE L2
+                    </span>
                   </div>
-                  <div className="p-2 border border-secondary bg-surface-container">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="border-t border-secondary pt-3">
-                  <p className="text-sm font-hanken opacity-85 leading-relaxed">
-                    Mendukung komando utama periode kelas XI, koordinasi logistik taktis internal, dan penjamin kontinuitas
-                    operasional skuad.
+                  <h3 className="font-space-mono font-bold text-lg sm:text-xl text-secondary">
+                    WAKIL KETUA MURID
+                  </h3>
+                  <p className="font-space-mono font-bold text-primary text-base mt-0.5">
+                    M. ARKAN RAIHAN NUGRAHA
                   </p>
+                  <div className="border-t border-secondary/40 pt-2.5 mt-2.5">
+                    <p className="text-xs sm:text-sm font-hanken opacity-85 leading-relaxed">
+                      Mendukung komando utama periode kelas XI, koordinasi logistik taktis internal, dan penjamin kontinuitas operasional skuad.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -349,43 +497,115 @@ export default function ChainOfCommand() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* Divisi Sekretaris XI */}
-              <div className="dossier-card p-6 bg-[#e6e3e0]">
-                <h4 className="font-space-mono font-bold text-lg mb-2 flex items-center gap-2">
+              <div className="dossier-card p-5 sm:p-6 bg-[#e6e3e0]">
+                <h4 className="font-space-mono font-bold text-base sm:text-lg mb-4 flex items-center justify-between border-b border-secondary/40 pb-2">
                   <span>DIVISI SEKRETARIS (XI)</span>
+                  <span className="font-courier text-xs text-primary font-bold">3 OPERATIVES</span>
                 </h4>
                 <div className="space-y-3 font-courier text-xs">
-                  <div className="p-2 bg-surface border border-secondary flex justify-between">
-                    <span className="font-bold">01. Syahira</span>
-                    <span className="opacity-60">Logbook & Arsip Taktis</span>
+                  <div className="p-2.5 bg-surface border border-secondary flex items-center gap-3">
+                    <AgentPhoto
+                      photo="/students/agt-35.jpg"
+                      name="Syahira Bilqis Humaira"
+                      id="AGT-35"
+                      size="sm"
+                    />
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <strong className="text-secondary font-bold">01. Syahira Bilqis Humaira</strong>
+                        <span className="text-[10px] text-primary font-bold">ORACLE</span>
+                      </div>
+                      <span className="opacity-70 text-[11px] block mt-0.5">Logbook & Arsip Taktis</span>
+                    </div>
                   </div>
-                  <div className="p-2 bg-surface border border-secondary flex justify-between">
-                    <span className="font-bold">02. Rahma</span>
-                    <span className="opacity-60">Risalah Rapat & Profil</span>
+
+                  <div className="p-2.5 bg-surface border border-secondary flex items-center gap-3">
+                    <AgentPhoto
+                      photo="/students/agt-30.jpg"
+                      name="Rahma Santika Al Anshor"
+                      id="AGT-30"
+                      size="sm"
+                    />
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <strong className="text-secondary font-bold">02. Rahma Santika Al Anshor</strong>
+                        <span className="text-[10px] text-primary font-bold">DOSSIER</span>
+                      </div>
+                      <span className="opacity-70 text-[11px] block mt-0.5">Risalah Rapat & Profil</span>
+                    </div>
                   </div>
-                  <div className="p-2 bg-surface border border-secondary flex justify-between">
-                    <span className="font-bold">03. Putri</span>
-                    <span className="opacity-60">Presensi & Ketertiban</span>
+
+                  <div className="p-2.5 bg-surface border border-secondary flex items-center gap-3">
+                    <AgentPhoto
+                      photo="/students/agt-28.jpg"
+                      name="Putri Maulidia Yusuf"
+                      id="AGT-28"
+                      size="sm"
+                    />
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <strong className="text-secondary font-bold">03. Putri Maulidia Yusuf</strong>
+                        <span className="text-[10px] text-primary font-bold">SCRIBE</span>
+                      </div>
+                      <span className="opacity-70 text-[11px] block mt-0.5">Presensi & Ketertiban</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Divisi Bendahara XI */}
-              <div className="dossier-card p-6 bg-[#e6e3e0]">
-                <h4 className="font-space-mono font-bold text-lg mb-2 flex items-center gap-2">
+              <div className="dossier-card p-5 sm:p-6 bg-[#e6e3e0]">
+                <h4 className="font-space-mono font-bold text-base sm:text-lg mb-4 flex items-center justify-between border-b border-secondary/40 pb-2">
                   <span>DIVISI BENDAHARA (XI)</span>
+                  <span className="font-courier text-xs text-primary font-bold">3 OPERATIVES</span>
                 </h4>
                 <div className="space-y-3 font-courier text-xs">
-                  <div className="p-2 bg-surface border border-secondary flex justify-between">
-                    <span className="font-bold">01. Nazwatus Shifa</span>
-                    <span className="opacity-60">Aliran Kas & Anggaran</span>
+                  <div className="p-2.5 bg-surface border border-secondary flex items-center gap-3">
+                    <AgentPhoto
+                      photo="/students/agt-25.jpg"
+                      name="Nazwatus Shifa"
+                      id="AGT-25"
+                      size="sm"
+                    />
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <strong className="text-secondary font-bold">01. Nazwatus Shifa</strong>
+                        <span className="text-[10px] text-primary font-bold">VAULT</span>
+                      </div>
+                      <span className="opacity-70 text-[11px] block mt-0.5">Aliran Kas & Anggaran</span>
+                    </div>
                   </div>
-                  <div className="p-2 bg-surface border border-secondary flex justify-between">
-                    <span className="font-bold">02. Resna Rahmawati</span>
-                    <span className="opacity-60">Pelaporan & Iuran</span>
+
+                  <div className="p-2.5 bg-surface border border-secondary flex items-center gap-3">
+                    <AgentPhoto
+                      photo="/students/agt-32.jpg"
+                      name="Resna Rahmawati"
+                      id="AGT-32"
+                      size="sm"
+                    />
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <strong className="text-secondary font-bold">02. Resna Rahmawati</strong>
+                        <span className="text-[10px] text-primary font-bold">RESERVE</span>
+                      </div>
+                      <span className="opacity-70 text-[11px] block mt-0.5">Pelaporan & Iuran</span>
+                    </div>
                   </div>
-                  <div className="p-2 bg-surface border border-secondary flex justify-between">
-                    <span className="font-bold">03. Ropi&apos;i Alawi</span>
-                    <span className="opacity-60">Audit & Rekonsiliasi</span>
+
+                  <div className="p-2.5 bg-surface border border-secondary flex items-center gap-3">
+                    <AgentPhoto
+                      photo="/students/agt-24.jpg"
+                      name="Muhammad Rofi'i Alawi"
+                      id="AGT-24"
+                      size="sm"
+                    />
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <strong className="text-secondary font-bold">03. Muhammad Rofi&apos;i Alawi</strong>
+                        <span className="text-[10px] text-primary font-bold">LEDGER</span>
+                      </div>
+                      <span className="opacity-70 text-[11px] block mt-0.5">Audit & Rekonsiliasi</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -401,53 +621,118 @@ export default function ChainOfCommand() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="dossier-card p-5 bg-surface">
-                <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI KEAGAMAAN</h5>
-                <p className="font-courier text-xs font-bold mb-2">Ibnu & Jihan</p>
-                <p className="font-hanken text-xs opacity-75">Pembinaan spiritual skuad dan pengawalan kegiatan ibadah.</p>
+              {/* Seksi Keagamaan */}
+              <div className="dossier-card p-5 bg-surface flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <AgentPhoto photo="/students/agt-08.jpg" name="Ibnu Hambal" id="AGT-08" size="sm" />
+                    <AgentPhoto photo="/students/agt-11.jpg" name="Jihan Fauziah" id="AGT-11" size="sm" />
+                  </div>
+                  <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI KEAGAMAAN</h5>
+                  <p className="font-courier text-xs font-bold mb-1">Ibnu Hambal & Jihan Fauziah</p>
+                </div>
+                <p className="font-hanken text-xs opacity-75 mt-2 pt-2 border-t border-secondary/30">
+                  Pembinaan spiritual skuad dan pengawalan kegiatan ibadah.
+                </p>
               </div>
 
-              <div className="dossier-card p-5 bg-surface">
-                <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI PENDIDIKAN</h5>
-                <p className="font-courier text-xs font-bold mb-2">Andhika & Rafa</p>
-                <p className="font-hanken text-xs opacity-75">Strategi kurikulum intelijen dan koordinasi persiapan ujian.</p>
+              {/* Seksi Pendidikan */}
+              <div className="dossier-card p-5 bg-surface flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <AgentPhoto photo="/students/agt-02.jpg" name="Andhika Noor Hidayat" id="AGT-02" size="sm" />
+                    <AgentPhoto photo="/students/agt-29.jpg" name="Rafa Khadafi" id="AGT-29" size="sm" />
+                  </div>
+                  <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI PENDIDIKAN</h5>
+                  <p className="font-courier text-xs font-bold mb-1">Andhika Noor & Rafa Khadafi</p>
+                </div>
+                <p className="font-hanken text-xs opacity-75 mt-2 pt-2 border-t border-secondary/30">
+                  Strategi kurikulum intelijen dan koordinasi persiapan ujian.
+                </p>
               </div>
 
-              <div className="dossier-card p-5 bg-surface">
-                <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI OLAHRAGA</h5>
-                <p className="font-courier text-xs font-bold mb-2">Jibril & Asyraf</p>
-                <p className="font-hanken text-xs opacity-75">Kebugaran fisik dan koordinasi kegiatan keolahragaan skuad.</p>
+              {/* Seksi Olahraga */}
+              <div className="dossier-card p-5 bg-surface flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <AgentPhoto photo="/students/agt-10.jpg" name="Jibril Ibni Jubair" id="AGT-10" size="sm" />
+                    <AgentPhoto name="Muhammad Asyraf" id="AGT-20" size="sm" />
+                  </div>
+                  <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI OLAHRAGA</h5>
+                  <p className="font-courier text-xs font-bold mb-1">Jibril Ibni & M. Asyraf</p>
+                </div>
+                <p className="font-hanken text-xs opacity-75 mt-2 pt-2 border-t border-secondary/30">
+                  Kebugaran fisik dan koordinasi kegiatan keolahragaan skuad.
+                </p>
               </div>
 
-              <div className="dossier-card p-5 bg-surface">
-                <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI KEBERSIHAN</h5>
-                <p className="font-courier text-xs font-bold mb-2">Dika & Keanu</p>
-                <p className="font-hanken text-xs opacity-75">Sterilisasi sektor utama dan pemeliharaan kebersihan kelas.</p>
+              {/* Seksi Kebersihan */}
+              <div className="dossier-card p-5 bg-surface flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <AgentPhoto photo="/students/agt-04.jpg" name="Dika Prayoga Gunawan" id="AGT-04" size="sm" />
+                    <AgentPhoto photo="/students/agt-15.jpg" name="Moch Keanu Alvino" id="AGT-15" size="sm" />
+                  </div>
+                  <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI KEBERSIHAN</h5>
+                  <p className="font-courier text-xs font-bold mb-1">Dika Prayoga & Moch Keanu</p>
+                </div>
+                <p className="font-hanken text-xs opacity-75 mt-2 pt-2 border-t border-secondary/30">
+                  Sterilisasi sektor utama dan pemeliharaan kebersihan kelas.
+                </p>
               </div>
 
-              <div className="dossier-card p-5 bg-surface">
-                <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI PERALATAN</h5>
-                <p className="font-courier text-xs font-bold mb-2">Deryl & Fariz</p>
-                <p className="font-hanken text-xs opacity-75">Inventarisasi perkakas dan fasilitas presentasi lab.</p>
+              {/* Seksi Peralatan */}
+              <div className="dossier-card p-5 bg-surface flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <AgentPhoto photo="/students/agt-21.jpg" name="Muhammad Deryl" id="AGT-21" size="sm" />
+                    <AgentPhoto photo="/students/agt-07.jpg" name="Fariz Dzulhami" id="AGT-07" size="sm" />
+                  </div>
+                  <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI PERALATAN</h5>
+                  <p className="font-courier text-xs font-bold mb-1">M. Deryl & Fariz Dzulhami</p>
+                </div>
+                <p className="font-hanken text-xs opacity-75 mt-2 pt-2 border-t border-secondary/30">
+                  Inventarisasi perkakas dan fasilitas presentasi lab.
+                </p>
               </div>
 
-              <div className="dossier-card p-5 bg-surface">
-                <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI KEAMANAN</h5>
-                <p className="font-courier text-xs font-bold mb-2">Kiano & Alyandra</p>
-                <p className="font-hanken text-xs opacity-75">Patroli ketertiban sektor dan penegakan protokol disiplin.</p>
+              {/* Seksi Keamanan */}
+              <div className="dossier-card p-5 bg-surface flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <AgentPhoto photo="/students/agt-12.jpg" name="Kiano Devaro Ridho" id="AGT-12" size="sm" />
+                  </div>
+                  <h5 className="font-space-mono font-bold text-sm text-primary mb-1">SEKSI KEAMANAN</h5>
+                  <p className="font-courier text-xs font-bold mb-1">Kiano Devaro Ridho</p>
+                </div>
+                <p className="font-hanken text-xs opacity-75 mt-2 pt-2 border-t border-secondary/30">
+                  Patroli ketertiban sektor dan penegakan protokol disiplin.
+                </p>
               </div>
             </div>
 
             {/* Seksi Dokumentasi XI */}
             <div className="dossier-card p-6 bg-[#e6e3e0] max-w-3xl mx-auto">
-              <h5 className="font-space-mono font-bold text-base text-primary mb-2 text-center">
+              <h5 className="font-space-mono font-bold text-base text-primary mb-4 text-center">
                 SEKSI DOKUMENTASI (4 OPERATIVES)
               </h5>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center font-courier text-xs">
-                <div className="p-2 border border-secondary bg-surface font-bold">Jihan</div>
-                <div className="p-2 border border-secondary bg-surface font-bold">Nesya</div>
-                <div className="p-2 border border-secondary bg-surface font-bold">Haidar</div>
-                <div className="p-2 border border-secondary bg-surface font-bold">Ilisha</div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-courier text-xs">
+                <div className="p-3 border border-secondary bg-surface flex flex-col items-center gap-2">
+                  <AgentPhoto photo="/students/agt-11.jpg" name="Jihan Fauziah" id="AGT-11" size="sm" />
+                  <span className="font-bold">Jihan</span>
+                </div>
+                <div className="p-3 border border-secondary bg-surface flex flex-col items-center gap-2">
+                  <AgentPhoto photo="/students/agt-26.jpg" name="Nesya Kirani" id="AGT-26" size="sm" />
+                  <span className="font-bold">Nesya</span>
+                </div>
+                <div className="p-3 border border-secondary bg-surface flex flex-col items-center gap-2">
+                  <AgentPhoto photo="/students/agt-23.jpg" name="Muhammad Haidar" id="AGT-23" size="sm" />
+                  <span className="font-bold">Haidar</span>
+                </div>
+                <div className="p-3 border border-secondary bg-surface flex flex-col items-center gap-2">
+                  <AgentPhoto photo="/students/agt-09.jpg" name="Ilisha Neola" id="AGT-09" size="sm" />
+                  <span className="font-bold">Ilisha</span>
+                </div>
               </div>
               <p className="font-hanken text-xs opacity-75 text-center mt-3">
                 Perekaman visual operasi kelas, penyuntingan materi multimedia, dan pengelolaan arsip galeri intelijen.

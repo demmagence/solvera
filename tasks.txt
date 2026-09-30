@@ -1,19 +1,3 @@
-to do list
-mempelajari struktur project ini
-menganalisis desain yang digunakan
-mengoptimalisasi web ini agar mudah dirender
-membuat web ini menjadi responsive dan dapat diakses di berbagai device
-membuat web ini menjadi lebih interaktif
-temanya berkaitan dengan detektif
+siapapun itu tolong cek project ini apakah sudah sesuai dengan yang saya buat apa belum
 
-fitur
-memasukan file semua foto dari google drive ke sini agar tidak perlu dirender oleh aplikasi internal
-memasukan data siswa ke project ini
-memisahkan antara page kelas saat kelas 11 dan 12 karena struktur organisasinya berbeda
-memasukan piket kelas
-memasukan jadwal sekolah
-memasukan data prestasi yang diraih oleh kelas maupun individu ataupun organisasi yang dijalaninya
-
-https://drive.google.com/drive/folders/1TXy0pOyPPk7-PyroQPt42R39LoeDQ3iV?usp=drive_link
-apakah link tersebut bisa diakses oleh kamu? ada folder edit pas foto itu isinya foto daftar siswa yang bisa dimasukan ke dalam list daftar kelas fotonya, 
-di folder group itu foto bersama.
+kalo ada yang mau ditambahin, revisi, kurangin ketik di bawahnya
